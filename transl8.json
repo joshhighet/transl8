@@ -49,7 +49,7 @@
         "shodan": "http.html",
         "censys": "services.http.response.body",
         "binaryedge": "body.content",
-        "zoomeye": "{freeform}",
+        "zoomeye": "",
         "fofa": "",
         "meta_desc": ""
     },
@@ -122,7 +122,7 @@
         "censys": "dns.names",
         "binaryedge": "rdns",
         "zoomeye": "hostname",
-        "fofa": "",
+        "fofa": "host",
         "meta_desc": ""
     },
     {
@@ -141,6 +141,15 @@
         "binaryedge": "as_name",
         "zoomeye": "organization",
         "fofa": "",
+        "meta_desc": ""
+    },
+    {
+        "keyword": "domain",
+        "shodan": "hostname",
+        "censys": "dns.names",
+        "binaryedge": "rdns_parent",
+        "zoomeye": "site",
+        "fofa": "domain",
         "meta_desc": ""
     }
 ]
