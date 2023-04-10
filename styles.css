@@ -65,6 +65,10 @@ form > * {
     width: 300px;
 }
 
+code {
+    font-family: monospace;
+}  
+
 .copy-button, .open-button {
     background-color: #4CAF50;
     border: none;
@@ -87,3 +91,7 @@ form > * {
 .copy-button i {
     font-size: 18px;
 }
+
+select option {
+    font-style: italic;
+  }

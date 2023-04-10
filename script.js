@@ -11,7 +11,7 @@ const urlPrefixes = {
     censys: 'https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=25&virtual_hosts=EXCLUDE&q=',
     binaryedge: 'https://app.binaryedge.io/services/query?page=1&query=',
     zoomeye: 'https://www.zoomeye.org/searchResult?q=',
-    fofa: 'https://tempquery.com?query='
+    fofa: 'https://en.fofa.info/result?qbase64='
 };
 
 function populateKeywords(data, select) {
@@ -19,9 +19,28 @@ function populateKeywords(data, select) {
         const option = document.createElement('option');
         option.value = keyword.keyword;
         option.textContent = keyword.keyword;
-        option.title = keyword.meta_desc;
         select.appendChild(option);
+        if (keyword.meta_desc) {
+            option.setAttribute('data-meta-desc', keyword.meta_desc);
+        }
     }
+
+    select.addEventListener('change', (event) => {
+        const selectedOption = event.target.selectedOptions[0];
+        const metaDesc = selectedOption.getAttribute('data-meta-desc');
+        const queryInputDiv = event.target.parentNode;
+        const metaDescSpan = queryInputDiv.querySelector('.meta-desc');
+        if (metaDescSpan) {
+            metaDescSpan.textContent = metaDesc;
+        } else {
+            const newMetaDescSpan = document.createElement('span');
+            newMetaDescSpan.classList.add('meta-desc');
+            newMetaDescSpan.style.fontStyle = 'italic';
+            newMetaDescSpan.style.marginTop = '5px';
+            newMetaDescSpan.textContent = metaDesc;
+            queryInputDiv.appendChild(newMetaDescSpan);
+        }
+    });
 }
 
 function setupForm(data) {
