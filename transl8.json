@@ -1,21 +1,12 @@
 [
     {
-        "keyword": "query",
-        "shodan": "shodan",
-        "censys": "censys",
-        "binaryedge": "binaryedge",
-        "zoomeye": "zoomeye",
-        "fofa": "fofa",
-        "meta_desc": "meta_desc"
-    },
-    {
         "keyword": "jarm",
         "shodan": "ssl.jarm",
-        "censys": "jarm",
+        "censys": "services.jarm.fingerprint",
         "binaryedge": "jarm_hash",
         "zoomeye": "jarm",
-        "fofa": "",
-        "meta_desc": "jarm signature"
+        "fofa": "jarm",
+        "meta_desc": "62 byte Fingerprint"
     },
     {
         "keyword": "favicon",
@@ -24,7 +15,7 @@
         "binaryedge": "web.favicon.mmh3",
         "zoomeye": "iconhash",
         "fofa": "icon_hash",
-        "meta_desc": "mmh3"
+        "meta_desc": "Favicon MurmurHash"
     },
     {
         "keyword": "country",
@@ -32,8 +23,8 @@
         "censys": "location.country_code",
         "binaryedge": "country",
         "zoomeye": "country",
-        "fofa": "",
-        "meta_desc": "two letter iso"
+        "fofa": "country",
+        "meta_desc": "Country Code (ISO)"
     },
     {
         "keyword": "city",
@@ -41,8 +32,8 @@
         "censys": "location.city",
         "binaryedge": "geoip.city_name",
         "zoomeye": "city",
-        "fofa": "",
-        "meta_desc": ""
+        "fofa": "city",
+        "meta_desc": "City (String)"
     },
     {
         "keyword": "httpstring",
@@ -50,8 +41,8 @@
         "censys": "services.http.response.body",
         "binaryedge": "body.content",
         "zoomeye": "",
-        "fofa": "",
-        "meta_desc": ""
+        "fofa": "body",
+        "meta_desc": "HTTP Content Body"
     },
     {
         "keyword": "httptitle",
@@ -59,8 +50,8 @@
         "censys": "services.http.response.html_title",
         "binaryedge": "web.title",
         "zoomeye": "title",
-        "fofa": "",
-        "meta_desc": ""
+        "fofa": "title",
+        "meta_desc": "HTTP Title"
     },
     {
         "keyword": "httphash",
@@ -69,7 +60,7 @@
         "binaryedge": "body.sha256",
         "zoomeye": "",
         "fofa": "",
-        "meta_desc": ""
+        "meta_desc": "HTTP Response Body Hash"
     },
     {
         "keyword": "asn",
@@ -77,8 +68,8 @@
         "censys": "autonomous_system.asn",
         "binaryedge": "asn",
         "zoomeye": "asn",
-        "fofa": "",
-        "meta_desc": ""
+        "fofa": "as_number",
+        "meta_desc": "Autonomous System Number"
     },
     {
         "keyword": "port",
@@ -86,8 +77,8 @@
         "censys": "services.port",
         "binaryedge": "port",
         "zoomeye": "port",
-        "fofa": "",
-        "meta_desc": ""
+        "fofa": "port",
+        "meta_desc": "Port"
     },
     {
         "keyword": "ip",
@@ -96,7 +87,7 @@
         "binaryedge": "ip",
         "zoomeye": "ip",
         "fofa": "ip",
-        "meta_desc": ""
+        "meta_desc": "IP Address"
     },
     {
         "keyword": "header",
@@ -105,7 +96,7 @@
         "binaryedge": "web.headers.all",
         "zoomeye": "",
         "fofa": "",
-        "meta_desc": ""
+        "meta_desc": "HTTP Header"
     },
     {
         "keyword": "cidr",
@@ -113,8 +104,8 @@
         "censys": "ip",
         "binaryedge": "ip",
         "zoomeye": "cidr",
-        "fofa": "",
-        "meta_desc": ""
+        "fofa": "ip",
+        "meta_desc": "CIDR Block"
     },
     {
         "keyword": "hostname",
@@ -123,7 +114,7 @@
         "binaryedge": "rdns",
         "zoomeye": "hostname",
         "fofa": "host",
-        "meta_desc": ""
+        "meta_desc": "Hostname"
     },
     {
         "keyword": "ja3",
@@ -132,7 +123,7 @@
         "binaryedge": "ssl.server_info.ja3_digest",
         "zoomeye": "",
         "fofa": "",
-        "meta_desc": ""
+        "meta_desc": "JA3 Signature"
     },
     {
         "keyword": "org",
@@ -140,8 +131,8 @@
         "censys": "autonomous_system.organization",
         "binaryedge": "as_name",
         "zoomeye": "organization",
-        "fofa": "",
-        "meta_desc": ""
+        "fofa": "as_organization",
+        "meta_desc": "Autonomous System Org Name"
     },
     {
         "keyword": "domain",
@@ -150,6 +141,6 @@
         "binaryedge": "rdns_parent",
         "zoomeye": "site",
         "fofa": "domain",
-        "meta_desc": ""
+        "meta_desc": "Domain Name"
     }
 ]

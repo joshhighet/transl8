@@ -92,11 +92,9 @@ function buildQueries(data) {
                         queryTerm = btoa(queryTerm);
                     } else {
                         queryTextUI += `${matchingData[platform]}:"${value}" `;
-                        queryTerm = btoa(queryTerm);
                     }
                     queryText += `${queryTerm} `;
                 }
-
             }
             if (queryText) {
                 const queryP = document.createElement('p');
