@@ -4,10 +4,11 @@ on:
   push:
     paths:
       - 'transl8.csv'
+      - '.github/workflows/csv2json.yml'
   workflow_dispatch:
 
 jobs:
-  torsocks-job:
+  csv-to-json:
     runs-on: ubuntu-latest
     steps:
       - name: checkout the repo
