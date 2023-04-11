@@ -127,7 +127,7 @@ button:hover {
   color: white;
   text-align: center;
   padding: 1rem;
-  font-family: 'Comic Sans MS', sans-serif;
+  font-family: 'Comic Sans MS', sans-serif !important;
 }
 .github-icon {
     position: fixed;
