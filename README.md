@@ -4,7 +4,9 @@ _a work-in-progress translator for internet search engine data definitions_
 
 [![deploy static content](https://github.com/joshhighet/transl8/actions/workflows/static.yml/badge.svg)](https://github.com/joshhighet/transl8/actions/workflows/static.yml)
 
-transl8.csv contains lookup definitions - when this file is modified a github action converts/updates the transl8.json which is used to render the webpage
+1. transl8.csv contains lookup definitions
+2. when this file is modified a github action converts/updates transl8.json
+3. the json file is used to render the webpage
 
 [joshhighet.github.io/transl8](https://joshhighet.github.io/transl8/)
 
