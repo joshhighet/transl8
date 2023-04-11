@@ -1,55 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetch('transl8.json')
-      .then(response => response.json())
-      .then(data => {
-        setupForm(data);
-      });
-  });
-  
-  const urlPrefixes = {
+        .then(response => response.json())
+        .then(data => {
+            setupForm(data);
+        });
+});
+
+const urlPrefixes = {
     shodan: 'https://www.shodan.io/search?query=',
     censys: 'https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=25&virtual_hosts=EXCLUDE&q=',
     binaryedge: 'https://app.binaryedge.io/services/query?page=1&query=',
     zoomeye: 'https://www.zoomeye.org/searchResult?q=',
     fofa: 'https://en.fofa.info/result?qbase64='
-  };
-  
-  function populateKeywords(data, select) {
+};
+
+function populateKeywords(data, select) {
     for (const keyword of data) {
-      const option = document.createElement('option');
-      option.value = keyword.keyword;
-      option.textContent = keyword.keyword;
-      select.appendChild(option);
-      if (keyword.meta_desc) {
-        option.setAttribute('data-meta-desc', keyword.meta_desc);
-      }
+        const option = document.createElement('option');
+        option.value = keyword.keyword;
+        option.textContent = keyword.keyword;
+        select.appendChild(option);
+        if (keyword.meta_desc) {
+            option.setAttribute('data-meta-desc', keyword.meta_desc);
+        }
     }
-  
+
     select.addEventListener('change', (event) => {
-      const selectedOption = event.target.selectedOptions[0];
-      const metaDesc = selectedOption.getAttribute('data-meta-desc');
-      const queryInputDiv = event.target.parentNode;
-      const metaDescSpan = queryInputDiv.querySelector('.meta-desc');
-      if (metaDescSpan) {
-        metaDescSpan.textContent = metaDesc;
-      } else {
-        const newMetaDescSpan = document.createElement('span');
-        newMetaDescSpan.classList.add('meta-desc');
-        newMetaDescSpan.style.fontStyle = 'italic';
-        newMetaDescSpan.style.marginTop = '5px';
-        newMetaDescSpan.textContent = metaDesc;
-        queryInputDiv.appendChild(newMetaDescSpan);
-      }
+        const selectedOption = event.target.selectedOptions[0];
+        const metaDesc = selectedOption.getAttribute('data-meta-desc');
+        const queryInputDiv = event.target.parentNode;
+        const metaDescSpan = queryInputDiv.querySelector('.meta-desc');
+        if (metaDescSpan) {
+            metaDescSpan.textContent = metaDesc;
+        } else {
+            const newMetaDescSpan = document.createElement('span');
+            newMetaDescSpan.classList.add('meta-desc');
+            newMetaDescSpan.style.fontStyle = 'italic';
+            newMetaDescSpan.style.marginTop = '5px';
+            newMetaDescSpan.textContent = metaDesc;
+            queryInputDiv.appendChild(newMetaDescSpan);
+        }
     });
-  }
-  
-  function setupForm(data) {
+}
+
+function setupForm(data) {
     addKeywordInput(data);
     const addButton = document.getElementById('add-query');
     addButton.addEventListener('click', () => addKeywordInput(data));
-  }
-  
-  function addKeywordInput(data) {
+}
+
+function addKeywordInput(data) {
     const keywordDiv = document.createElement('div');
     keywordDiv.classList.add('keyword-input');
     const select = document.createElement('select');
@@ -66,68 +66,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const queryInputs = document.getElementById('query-inputs');
     queryInputs.appendChild(keywordDiv);
     buildQueries(data);
-  }
-  
-  function buildQueries(data) {
+}
+
+function buildQueries(data) {
     const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
     const values = Array.from(document.querySelectorAll('.query-value')).map(element => element.value);
     const queryResults = document.getElementById('query-results');
     queryResults.innerHTML = '';
     for (const platform in data[0]) {
-      if (platform !== 'keyword' && platform !== 'meta_desc') {
-        const queryDiv = document.createElement('div');
-        queryDiv.classList.add('query');
-        queryDiv.innerHTML = `<h3>${platform}</h3>`;
-        let queryText = '';
-        let queryTextUI = '';
-        for (let i = 0; i < keywords.length; i++) {
-          const keyword = keywords[i];
-          const value = values[i];
-          const matchingData = data.find(item => item.keyword === keyword);
-          if (matchingData[platform] && value) {
-            let queryTerm = `${matchingData[platform]}:${value}`;
-            if (platform === 'fofa') {
-              queryTerm = `${matchingData[platform]}="${value}"`;
-              queryTextUI += `${queryTerm} `;
-              queryTerm = btoa(queryTerm);
-            } else {
-              queryTextUI += `${matchingData[platform]}:"${value}" `;
-              queryTerm = btoa(queryTerm);
+        if (platform !== 'keyword' && platform !== 'meta_desc') {
+            const queryDiv = document.createElement('div');
+            queryDiv.classList.add('query');
+            queryDiv.innerHTML = `<h3>${platform}</h3>`;
+            let queryText = '';
+            let queryTextUI = '';
+            for (let i = 0; i < keywords.length; i++) {
+                const keyword = keywords[i];
+                const value = values[i];
+                const matchingData = data.find(item => item.keyword === keyword);
+                if (matchingData[platform] && value) {
+                    let queryTerm = `${matchingData[platform]}:${value}`;
+                    if (platform === 'fofa') {
+                        queryTerm = `${matchingData[platform]}="${value}"`;
+                        queryTextUI += `${queryTerm} `;
+                        queryTerm = btoa(queryTerm);
+                    } else {
+                        queryTextUI += `${matchingData[platform]}:"${value}" `;
+                        queryTerm = btoa(queryTerm);
+                    }
+                    queryText += `${queryTerm} `;
+                }
+
             }
-            queryText += `${queryTerm} `;
-          }
-          
-        }
-        if (queryText) {
-          const queryP = document.createElement('p');
-          queryP.textContent = queryTextUI.trim();
-          queryDiv.appendChild(queryP);
-          const copyButton = document.createElement('button');
-          copyButton.classList.add('copy-button');
-          copyButton.innerHTML = '<i class="fas fa-copy"></i>';
-          copyButton.title = 'copy to clipboard';
-          copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(queryTextUI.trim());
-          });
-          queryDiv.appendChild(copyButton);
-          const openButton = document.createElement('button');
-          openButton.classList.add('open-button');
-          openButton.textContent = 'open in search engine';
-          openButton.addEventListener('click', () => {
-            if (urlPrefixes[platform]) {
-              if (platform === 'fofa') {
-                window.open(`${urlPrefixes[platform]}${queryText}`, '_blank');
-              } else {
-                window.open(`${urlPrefixes[platform]}${encodeURIComponent(queryText)}`, '_blank');
-              }
-            } else {
-              alert('URL prefix not found for this platform.');
+            if (queryText) {
+                const queryP = document.createElement('p');
+                queryP.textContent = queryTextUI.trim();
+                queryDiv.appendChild(queryP);
+                const copyButton = document.createElement('button');
+                copyButton.classList.add('copy-button');
+                copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+                copyButton.title = 'copy to clipboard';
+                copyButton.addEventListener('click', () => {
+                    navigator.clipboard.writeText(queryTextUI.trim());
+                });
+                queryDiv.appendChild(copyButton);
+                const openButton = document.createElement('button');
+                openButton.classList.add('open-button');
+                openButton.textContent = 'open in search engine';
+                openButton.addEventListener('click', () => {
+                    if (urlPrefixes[platform]) {
+                        if (platform === 'fofa') {
+                            window.open(`${urlPrefixes[platform]}${queryText}`, '_blank');
+                        } else {
+                            window.open(`${urlPrefixes[platform]}${encodeURIComponent(queryText)}`, '_blank');
+                        }
+                    } else {
+                        alert('URL prefix not found for this platform.');
+                    }
+                });
+                queryDiv.appendChild(openButton);
             }
-          });
-          queryDiv.appendChild(openButton);
+            queryResults.appendChild(queryDiv);
         }
-        queryResults.appendChild(queryDiv);
-      }
     }
-  }
-  
+}
