@@ -2,6 +2,10 @@
 
 _a work-in-progress translator for internet search engine data definitions_
 
+[![deploy static content](https://github.com/joshhighet/transl8/actions/workflows/static.yml/badge.svg)](https://github.com/joshhighet/transl8/actions/workflows/static.yml)
+
+[joshhighet.github.io/transl8](https://joshhighet.github.io/transl8/)
+
 official query syntax links;
 
 - [zoomeye.org](https://www.zoomeye.org/doc?Thechannel=user)
