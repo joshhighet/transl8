@@ -115,3 +115,17 @@ button:hover {
   max-width: 400px;
   margin-bottom: 20px;
 }
+.query.unavailable {
+  background-color: #ffcccc;
+  border-color: #ff0000;
+}
+.credit-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-family: 'Comic Sans MS', sans-serif;
+}

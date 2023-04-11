@@ -63,8 +63,15 @@ function addKeywordInput(data) {
     input.addEventListener('input', () => buildQueries(data));
     keywordDiv.appendChild(select);
     keywordDiv.appendChild(input);
+    const metaDescSpan = document.createElement('span');
+    metaDescSpan.classList.add('meta-desc');
+    metaDescSpan.style.fontStyle = 'italic';
+    metaDescSpan.style.marginTop = '5px';
+    keywordDiv.appendChild(metaDescSpan);
     const queryInputs = document.getElementById('query-inputs');
     queryInputs.appendChild(keywordDiv);
+    const event = new Event('change');
+    select.dispatchEvent(event);
     buildQueries(data);
 }
 
@@ -80,6 +87,8 @@ function buildQueries(data) {
             queryDiv.innerHTML = `<h3>${platform}</h3>`;
             let queryText = '';
             let queryTextUI = '';
+            let unavailable = false;
+            let tooltipText = '';
             for (let i = 0; i < keywords.length; i++) {
                 const keyword = keywords[i];
                 const value = values[i];
@@ -95,6 +104,19 @@ function buildQueries(data) {
                     }
                     queryText += `${queryTerm} `;
                 }
+                if (matchingData[platform] === "unavailable") {
+                    unavailable = true;
+                    tooltipText = `The keyword "${keyword}" is not available for ${platform}.`;
+                    break;
+                }
+            }
+            if (unavailable) {
+                queryDiv.classList.add("unavailable");
+                const tooltipP = document.createElement('p');
+                tooltipP.innerHTML = `<i>${tooltipText}</i>`;
+                queryDiv.appendChild(tooltipP);
+            } else {
+                queryDiv.classList.remove("unavailable");
             }
             if (queryText) {
                 const queryP = document.createElement('p');

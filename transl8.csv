@@ -3,15 +3,24 @@ jarm,ssl.jarm,services.jarm.fingerprint,jarm_hash,jarm,jarm,62 byte Fingerprint
 favicon,http.favicon.hash,services.http.response.favicons.md5_hash,web.favicon.mmh3,iconhash,icon_hash,Favicon MurmurHash
 country,country,location.country_code,country,country,country,Country Code (ISO)
 city,city,location.city,geoip.city_name,city,city,City (String)
-httpstring,http.html,services.http.response.body,body.content,,body,HTTP Content Body
+httpstring,http.html,services.http.response.body,body.content,unavailable,body,HTTP Content Body
 httptitle,http.title,services.http.response.html_title,web.title,title,title,HTTP Title
-httphash,http.html_hash,services.http.response.body_hash,body.sha256,,,HTTP Response Body Hash
+httphash,http.html_hash,services.http.response.body_hash,body.sha256,unavailable,unavailable,HTTP Response Body Hash
 asn,asn,autonomous_system.asn,asn,asn,as_number,Autonomous System Number
 port,port,services.port,port,port,port,Port
 ip,ip,ip,ip,ip,ip,IP Address
-header,,,web.headers.all,,,HTTP Header
+header,unavailable,unavailable,web.headers.all,unavailable,unavailable,HTTP Header
 cidr,net,ip,ip,cidr,ip,CIDR Block
 hostname,hostname,dns.names,rdns,hostname,host,Hostname
-ja3,ssl.ja3s,services.tls.ja3s,ssl.server_info.ja3_digest,,,JA3 Signature
+ja3,ssl.ja3s,services.tls.ja3s,ssl.server_info.ja3_digest,unavailable,unavailable,JA3 Signature
 org,org,autonomous_system.organization,as_name,organization,as_organization,Autonomous System Org Name
 domain,hostname,dns.names,rdns_parent,site,domain,Domain Name
+ssl_version,ssl.version,services.tls.version,ssl.server_info.ssl_version,ssl_version,ssl_version,SSL/TLS Version
+os,http.components.classes,services.software.vendor,web.os,os,os,Operating System
+webserver,http.server,services.http.response.server_header,web.server,server,server,Web Server
+latitude,location.latitude,location.latitude,geoip.latitude,latitude,latitude,Geographical Latitude
+longitude,location.longitude,location.longitude,geoip.longitude,longitude,longitude,Geographical Longitude
+isp,isp,autonomous_system.isp,isp,isp,isp,Internet Service Provider
+device,http.device_type,services.software.type,device_type,device,device,Device Type
+ssl_cipher,ssl.cipher,services.tls.cipher_suite,ssl.server_info.ciphers,ssl_cipher,ssl_cipher,SSL/TLS Cipher Suite
+content_type,http.content_type,services.http.response.content_type,web.headers.content_type,content_type,content_type,HTTP Content Type

@@ -40,7 +40,7 @@
         "shodan": "http.html",
         "censys": "services.http.response.body",
         "binaryedge": "body.content",
-        "zoomeye": "",
+        "zoomeye": "unavailable",
         "fofa": "body",
         "meta_desc": "HTTP Content Body"
     },
@@ -58,8 +58,8 @@
         "shodan": "http.html_hash",
         "censys": "services.http.response.body_hash",
         "binaryedge": "body.sha256",
-        "zoomeye": "",
-        "fofa": "",
+        "zoomeye": "unavailable",
+        "fofa": "unavailable",
         "meta_desc": "HTTP Response Body Hash"
     },
     {
@@ -91,11 +91,11 @@
     },
     {
         "keyword": "header",
-        "shodan": "",
-        "censys": "",
+        "shodan": "unavailable",
+        "censys": "unavailable",
         "binaryedge": "web.headers.all",
-        "zoomeye": "",
-        "fofa": "",
+        "zoomeye": "unavailable",
+        "fofa": "unavailable",
         "meta_desc": "HTTP Header"
     },
     {
@@ -121,8 +121,8 @@
         "shodan": "ssl.ja3s",
         "censys": "services.tls.ja3s",
         "binaryedge": "ssl.server_info.ja3_digest",
-        "zoomeye": "",
-        "fofa": "",
+        "zoomeye": "unavailable",
+        "fofa": "unavailable",
         "meta_desc": "JA3 Signature"
     },
     {
@@ -142,5 +142,86 @@
         "zoomeye": "site",
         "fofa": "domain",
         "meta_desc": "Domain Name"
+    },
+    {
+        "keyword": "ssl_version",
+        "shodan": "ssl.version",
+        "censys": "services.tls.version",
+        "binaryedge": "ssl.server_info.ssl_version",
+        "zoomeye": "ssl_version",
+        "fofa": "ssl_version",
+        "meta_desc": "SSL/TLS Version"
+    },
+    {
+        "keyword": "os",
+        "shodan": "http.components.classes",
+        "censys": "services.software.vendor",
+        "binaryedge": "web.os",
+        "zoomeye": "os",
+        "fofa": "os",
+        "meta_desc": "Operating System"
+    },
+    {
+        "keyword": "webserver",
+        "shodan": "http.server",
+        "censys": "services.http.response.server_header",
+        "binaryedge": "web.server",
+        "zoomeye": "server",
+        "fofa": "server",
+        "meta_desc": "Web Server"
+    },
+    {
+        "keyword": "latitude",
+        "shodan": "location.latitude",
+        "censys": "location.latitude",
+        "binaryedge": "geoip.latitude",
+        "zoomeye": "latitude",
+        "fofa": "latitude",
+        "meta_desc": "Geographical Latitude"
+    },
+    {
+        "keyword": "longitude",
+        "shodan": "location.longitude",
+        "censys": "location.longitude",
+        "binaryedge": "geoip.longitude",
+        "zoomeye": "longitude",
+        "fofa": "longitude",
+        "meta_desc": "Geographical Longitude"
+    },
+    {
+        "keyword": "isp",
+        "shodan": "isp",
+        "censys": "autonomous_system.isp",
+        "binaryedge": "isp",
+        "zoomeye": "isp",
+        "fofa": "isp",
+        "meta_desc": "Internet Service Provider"
+    },
+    {
+        "keyword": "device",
+        "shodan": "http.device_type",
+        "censys": "services.software.type",
+        "binaryedge": "device_type",
+        "zoomeye": "device",
+        "fofa": "device",
+        "meta_desc": "Device Type"
+    },
+    {
+        "keyword": "ssl_cipher",
+        "shodan": "ssl.cipher",
+        "censys": "services.tls.cipher_suite",
+        "binaryedge": "ssl.server_info.ciphers",
+        "zoomeye": "ssl_cipher",
+        "fofa": "ssl_cipher",
+        "meta_desc": "SSL/TLS Cipher Suite"
+    },
+    {
+        "keyword": "content_type",
+        "shodan": "http.content_type",
+        "censys": "services.http.response.content_type",
+        "binaryedge": "web.headers.content_type",
+        "zoomeye": "content_type",
+        "fofa": "content_type",
+        "meta_desc": "HTTP Content Type"
     }
 ]
