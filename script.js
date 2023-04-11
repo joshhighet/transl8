@@ -100,11 +100,13 @@ function buildQueries(data) {
                         queryTermUI = `and ${queryTermUI}`;
                         queryTerm = `and ${queryTerm}`;
                     }
-                    
                     if (platform === 'fofa') {
                         queryTermUI = `${matchingData[platform]}="${value}"`;
-                        queryTerm = btoa(`${matchingData[platform]}="${value}"`);
-                    }   
+                        queryTerm = `${matchingData[platform]}="${value}"`;
+                    }
+                    if (queryText) {
+                        queryTerm = ` ${queryTerm}`;
+                    }
                     queryTextUI += `${queryTermUI} `;
                     queryText += `${queryTerm} `;
                 }
@@ -113,6 +115,11 @@ function buildQueries(data) {
                     tooltipText = `The keyword "${keyword}" is not available for ${platform}.`;
                     break;
                 }
+            }
+            if (platform === 'fofa') {
+                queryText = queryText.trim().replace(/ +/g, ' ');
+                queryTextUI = queryTextUI.trim().replace(/ +/g, ' ');
+                queryText = btoa(queryText);
             }
             if (unavailable) {
                 queryDiv.classList.add("unavailable");
