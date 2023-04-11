@@ -73,6 +73,19 @@ function addKeywordInput(data) {
     const event = new Event('change');
     select.dispatchEvent(event);
     buildQueries(data);
+    const removeButton = document.createElement('button');
+    removeButton.classList.add('remove-button');
+    removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    removeButton.addEventListener('click', () => {
+        keywordDiv.remove();
+        buildQueries(data);
+        const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
+        const values = Array.from(document.querySelectorAll('.query-value')).map(element => element.value);
+        updateURLQueryParameters(keywords, values);
+    });
+    keywordDiv.appendChild(removeButton);
+    keywordDiv.appendChild(select);
+    keywordDiv.appendChild(input);
 }
 
 function buildQueries(data) {

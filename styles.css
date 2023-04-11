@@ -119,19 +119,15 @@ button:hover {
   background-color: #ffcccc;
   border-color: #ff0000;
 }
-.credit-banner {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-family: 'Comic Sans MS', sans-serif;
-}
 .github-icon {
     position: fixed;
     top: 10px;
     right: 10px;
     z-index: 1000;
+}
+.remove-button {
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
