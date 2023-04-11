@@ -95,13 +95,17 @@ function buildQueries(data) {
                 const matchingData = data.find(item => item.keyword === keyword);
                 if (matchingData[platform] && value) {
                     let queryTerm = `${matchingData[platform]}:${value}`;
-                    if (platform === 'fofa') {
-                        queryTerm = `${matchingData[platform]}="${value}"`;
-                        queryTextUI += `${queryTerm} `;
-                        queryTerm = btoa(queryTerm);
-                    } else {
-                        queryTextUI += `${matchingData[platform]}:"${value}" `;
+                    let queryTermUI = `${matchingData[platform]}:"${value}"`;
+                    if (platform === 'censys' && queryTextUI) {
+                        queryTermUI = `and ${queryTermUI}`;
+                        queryTerm = `and ${queryTerm}`;
                     }
+                    
+                    if (platform === 'fofa') {
+                        queryTermUI = `${matchingData[platform]}="${value}"`;
+                        queryTerm = btoa(`${matchingData[platform]}="${value}"`);
+                    }   
+                    queryTextUI += `${queryTermUI} `;
                     queryText += `${queryTerm} `;
                 }
                 if (matchingData[platform] === "unavailable") {
