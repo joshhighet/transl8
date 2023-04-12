@@ -17,4 +17,4 @@ def csv_to_json(csv_file, json_file):
         json.dump(data, jsonfile, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
-    csv_to_json('transl8.csv', 'docs/transl8.json')
+    csv_to_json('queries.csv', 'docs/queries.json')

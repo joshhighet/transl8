@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('transl8.json')
+    fetch('queries.json')
         .then(response => response.json())
         .then(data => {
             setupForm(data);

@@ -3,7 +3,7 @@ name: csv to json
 on:
   push:
     paths:
-      - 'transl8.csv'
+      - 'queries.csv'
       - '.github/workflows/csv2json.yml'
   workflow_dispatch:
 
