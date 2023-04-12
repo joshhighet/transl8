@@ -11,17 +11,19 @@ const urlPrefixes = {
     censys: 'https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=25&virtual_hosts=EXCLUDE&q=',
     binaryedge: 'https://app.binaryedge.io/services/query?page=1&query=',
     zoomeye: 'https://www.zoomeye.org/searchResult?q=',
-    fofa: 'https://en.fofa.info/result?qbase64='
+    fofa: 'https://en.fofa.info/result?qbase64=',
+    onyphe: 'https://www.onyphe.io/search?q=',
+    quake360: 'https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=',
+    netlas: 'https://app.netlas.io/responses/?page=1&indices=&q='
 };
-
 function populateKeywords(data, select) {
     for (const keyword of data) {
         const option = document.createElement('option');
         option.value = keyword.keyword;
         option.textContent = keyword.keyword;
         select.appendChild(option);
-        if (keyword.meta_desc) {
-            option.setAttribute('data-meta-desc', keyword.meta_desc);
+        if (keyword.description && !keyword.example) {
+            option.setAttribute('data-meta-desc', keyword.description);
         }
     }
 
@@ -42,6 +44,8 @@ function populateKeywords(data, select) {
         }
     });
 }
+
+
 
 function setupForm(data) {
     addKeywordInput(data);
@@ -94,7 +98,7 @@ function buildQueries(data) {
     const queryResults = document.getElementById('query-results');
     queryResults.innerHTML = '';
     for (const platform in data[0]) {
-        if (platform !== 'keyword' && platform !== 'meta_desc') {
+        if (platform !== 'keyword' && platform !== 'description') {
             const queryDiv = document.createElement('div');
             queryDiv.classList.add('query');
             queryDiv.innerHTML = `<h3>${platform}</h3>`;
