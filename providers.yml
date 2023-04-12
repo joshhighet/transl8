@@ -1,0 +1,71 @@
+- name: shodan
+  prefix: https://www.shodan.io/search?query=
+  kv_separator: ':'
+  query_separator: ' '
+  operators:
+      and: and
+      or: or
+      not: not
+
+- name: censys
+  prefix: https://search.censys.io/search?resource=hosts&sort=RELEVANCE&q=1.1.1.1
+  kv_separator: ':'
+  query_separator: ' and '
+  operators:
+      and: and
+      or: or
+      not: not
+
+- name: binaryedge
+  prefix: https://app.binaryedge.io/services/query?page=1&query=
+  kv_separator: ':'
+  query_separator: ' '
+  operators:
+      and: and
+      or: or
+      not: not
+
+- name: zoomeye
+  prefix: https://www.zoomeye.org/searchResult?q=
+  kv_separator: ':'
+  query_separator: ' '
+  operators:
+      and: and
+      or: or
+      not: not
+
+- name: fofa
+  prefix: https://en.fofa.info/result?q=
+  kv_separator: '='
+  query_separator: ' '
+  operators:
+      and: and
+      or: or
+      not: not
+
+- name: onyphe
+  prefix: https://www.onyphe.io/search?q=
+  kv_separator: ':'
+  query_separator: ' '
+  operators:
+      and: AND
+      or: OR
+      not: NOT
+
+- name: quake360
+  prefix: https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=
+  kv_separator: ':'
+  query_separator: ' '
+  operators:
+      and: and
+      or: or
+      not: not
+
+- name: netlas
+  prefix: https://app.netlas.io/responses/?page=1&indices=&q=
+  kv_separator: ':'
+  query_separator: ' '
+  operators:
+      and: AND
+      or: OR
+      not: NOT
