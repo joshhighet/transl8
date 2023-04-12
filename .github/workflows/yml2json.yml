@@ -1,21 +1,21 @@
-name: csv to json
+name: yml to json
 
 on:
   push:
     paths:
-      - 'transl8.csv'
-      - '.github/workflows/csv2json.yml'
+      - 'providers.yml'
+      - '.github/workflows/yml2json.yml'
   workflow_dispatch:
 
 jobs:
-  csv-to-json:
+  yml-to-json:
     runs-on: ubuntu-latest
     steps:
       - name: checkout the repo
         uses: actions/checkout@v2
-      - name: generate json from csv
+      - name: generate yml from csv
         run: |
-          python3 converters/csv2json.py
+          python3 converters/yml2json.py
       - name: save changes
         run: |
           git config user.name github-actions
