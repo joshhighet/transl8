@@ -6,7 +6,11 @@
         "binaryedge": "jarm_hash",
         "zoomeye": "jarm",
         "fofa": "jarm",
-        "meta_desc": "62 byte Fingerprint"
+        "quake360": null,
+        "netlas": "jarm",
+        "onyphe": null,
+        "meta_desc": "62 byte Fingerprint",
+        "example": null
     },
     {
         "keyword": "favicon",
@@ -15,7 +19,11 @@
         "binaryedge": "web.favicon.mmh3",
         "zoomeye": "iconhash",
         "fofa": "icon_hash",
-        "meta_desc": "Favicon MurmurHash"
+        "quake360": null,
+        "netlas": "http.favicon.hash.hash_sha256",
+        "onyphe": null,
+        "meta_desc": "Favicon MurmurHash",
+        "example": null
     },
     {
         "keyword": "country",
@@ -24,7 +32,11 @@
         "binaryedge": "country",
         "zoomeye": "country",
         "fofa": "country",
-        "meta_desc": "Country Code (ISO)"
+        "quake360": "country",
+        "netlas": "geo.country",
+        "onyphe": "country",
+        "meta_desc": "Country Code (ISO)",
+        "example": "NZ"
     },
     {
         "keyword": "city",
@@ -33,16 +45,24 @@
         "binaryedge": "geoip.city_name",
         "zoomeye": "city",
         "fofa": "city",
-        "meta_desc": "City (String)"
+        "quake360": "city",
+        "netlas": "geo.city",
+        "onyphe": null,
+        "meta_desc": "City (String)",
+        "example": "Wellington"
     },
     {
         "keyword": "httpstring",
         "shodan": "http.html",
         "censys": "services.http.response.body",
         "binaryedge": "body.content",
-        "zoomeye": "unavailable",
+        "zoomeye": null,
         "fofa": "body",
-        "meta_desc": "HTTP Content Body"
+        "quake360": "response",
+        "netlas": "http.body",
+        "onyphe": "data",
+        "meta_desc": "HTTP Content Body",
+        "example": "Index of /"
     },
     {
         "keyword": "httptitle",
@@ -51,16 +71,24 @@
         "binaryedge": "web.title",
         "zoomeye": "title",
         "fofa": "title",
-        "meta_desc": "HTTP Title"
+        "quake360": null,
+        "netlas": "http.title",
+        "onyphe": "app.http.title",
+        "meta_desc": "HTTP Title",
+        "example": "Visual Studio Marketplace"
     },
     {
         "keyword": "httphash",
         "shodan": "http.html_hash",
         "censys": "services.http.response.body_hash",
         "binaryedge": "body.sha256",
-        "zoomeye": "unavailable",
-        "fofa": "unavailable",
-        "meta_desc": "HTTP Response Body Hash"
+        "zoomeye": null,
+        "fofa": null,
+        "quake360": null,
+        "netlas": "http.body_sha256",
+        "onyphe": "app.http.bodymd5",
+        "meta_desc": "HTTP Response Body Hash",
+        "example": null
     },
     {
         "keyword": "asn",
@@ -69,7 +97,11 @@
         "binaryedge": "asn",
         "zoomeye": "asn",
         "fofa": "as_number",
-        "meta_desc": "Autonomous System Number"
+        "quake360": "asn",
+        "netlas": "whois.asn.number",
+        "onyphe": "asn",
+        "meta_desc": "Autonomous System Number",
+        "example": null
     },
     {
         "keyword": "port",
@@ -78,7 +110,11 @@
         "binaryedge": "port",
         "zoomeye": "port",
         "fofa": "port",
-        "meta_desc": "Port"
+        "quake360": "port",
+        "netlas": "port",
+        "onyphe": "port",
+        "meta_desc": "Port",
+        "example": null
     },
     {
         "keyword": "ip",
@@ -87,16 +123,24 @@
         "binaryedge": "ip",
         "zoomeye": "ip",
         "fofa": "ip",
-        "meta_desc": "IP Address"
+        "quake360": "ip",
+        "netlas": "ip",
+        "onyphe": "ip",
+        "meta_desc": "IP Address",
+        "example": null
     },
     {
         "keyword": "header",
-        "shodan": "unavailable",
-        "censys": "unavailable",
+        "shodan": null,
+        "censys": null,
         "binaryedge": "web.headers.all",
-        "zoomeye": "unavailable",
-        "fofa": "unavailable",
-        "meta_desc": "HTTP Header"
+        "zoomeye": null,
+        "fofa": null,
+        "quake360": null,
+        "netlas": "http.headers",
+        "onyphe": null,
+        "meta_desc": "HTTP Header",
+        "example": null
     },
     {
         "keyword": "cidr",
@@ -105,7 +149,11 @@
         "binaryedge": "ip",
         "zoomeye": "cidr",
         "fofa": "ip",
-        "meta_desc": "CIDR Block"
+        "quake360": "ip",
+        "netlas": "whois.net.cidr",
+        "onyphe": "subnet",
+        "meta_desc": "CIDR Block",
+        "example": null
     },
     {
         "keyword": "hostname",
@@ -114,16 +162,24 @@
         "binaryedge": "rdns",
         "zoomeye": "hostname",
         "fofa": "host",
-        "meta_desc": "Hostname"
+        "quake360": "hostname",
+        "netlas": "host",
+        "onyphe": "forward",
+        "meta_desc": "Hostname",
+        "example": null
     },
     {
         "keyword": "ja3",
         "shodan": "ssl.ja3s",
         "censys": "services.tls.ja3s",
         "binaryedge": "ssl.server_info.ja3_digest",
-        "zoomeye": "unavailable",
-        "fofa": "unavailable",
-        "meta_desc": "JA3 Signature"
+        "zoomeye": null,
+        "fofa": null,
+        "quake360": null,
+        "netlas": null,
+        "onyphe": null,
+        "meta_desc": "JA3 Signature",
+        "example": null
     },
     {
         "keyword": "org",
@@ -132,7 +188,11 @@
         "binaryedge": "as_name",
         "zoomeye": "organization",
         "fofa": "as_organization",
-        "meta_desc": "Autonomous System Org Name"
+        "quake360": "org",
+        "netlas": "whois.asn.name",
+        "onyphe": "geolocus.organization",
+        "meta_desc": "Autonomous System Org Name",
+        "example": null
     },
     {
         "keyword": "domain",
@@ -141,7 +201,11 @@
         "binaryedge": "rdns_parent",
         "zoomeye": "site",
         "fofa": "domain",
-        "meta_desc": "Domain Name"
+        "quake360": "domain",
+        "netlas": "domain",
+        "onyphe": "hostname",
+        "meta_desc": "Domain Name",
+        "example": null
     },
     {
         "keyword": "ssl_version",
@@ -150,7 +214,11 @@
         "binaryedge": "ssl.server_info.ssl_version",
         "zoomeye": "ssl_version",
         "fofa": "ssl_version",
-        "meta_desc": "SSL/TLS Version"
+        "quake360": null,
+        "netlas": null,
+        "onyphe": null,
+        "meta_desc": "SSL/TLS Version",
+        "example": null
     },
     {
         "keyword": "os",
@@ -159,7 +227,11 @@
         "binaryedge": "web.os",
         "zoomeye": "os",
         "fofa": "os",
-        "meta_desc": "Operating System"
+        "quake360": "os",
+        "netlas": null,
+        "onyphe": null,
+        "meta_desc": "Operating System",
+        "example": null
     },
     {
         "keyword": "webserver",
@@ -168,7 +240,11 @@
         "binaryedge": "web.server",
         "zoomeye": "server",
         "fofa": "server",
-        "meta_desc": "Web Server"
+        "quake360": "app",
+        "netlas": "http.headers.server",
+        "onyphe": "productvendor",
+        "meta_desc": "Web Server",
+        "example": null
     },
     {
         "keyword": "latitude",
@@ -177,7 +253,11 @@
         "binaryedge": "geoip.latitude",
         "zoomeye": "latitude",
         "fofa": "latitude",
-        "meta_desc": "Geographical Latitude"
+        "quake360": null,
+        "netlas": null,
+        "onyphe": "latitude",
+        "meta_desc": "Geographical Latitude",
+        "example": null
     },
     {
         "keyword": "longitude",
@@ -186,7 +266,11 @@
         "binaryedge": "geoip.longitude",
         "zoomeye": "longitude",
         "fofa": "longitude",
-        "meta_desc": "Geographical Longitude"
+        "quake360": null,
+        "netlas": null,
+        "onyphe": "longitude",
+        "meta_desc": "Geographical Longitude",
+        "example": null
     },
     {
         "keyword": "isp",
@@ -195,7 +279,11 @@
         "binaryedge": "isp",
         "zoomeye": "isp",
         "fofa": "isp",
-        "meta_desc": "Internet Service Provider"
+        "quake360": "isp",
+        "netlas": "whois.net.name",
+        "onyphe": "geolocus.netname",
+        "meta_desc": "Internet Service Provider",
+        "example": null
     },
     {
         "keyword": "device",
@@ -204,7 +292,11 @@
         "binaryedge": "device_type",
         "zoomeye": "device",
         "fofa": "device",
-        "meta_desc": "Device Type"
+        "quake360": null,
+        "netlas": null,
+        "onyphe": null,
+        "meta_desc": "Device Type",
+        "example": null
     },
     {
         "keyword": "ssl_cipher",
@@ -213,7 +305,11 @@
         "binaryedge": "ssl.server_info.ciphers",
         "zoomeye": "ssl_cipher",
         "fofa": "ssl_cipher",
-        "meta_desc": "SSL/TLS Cipher Suite"
+        "quake360": null,
+        "netlas": null,
+        "onyphe": "serial",
+        "meta_desc": "SSL/TLS Cipher Suite",
+        "example": null
     },
     {
         "keyword": "content_type",
@@ -222,6 +318,23 @@
         "binaryedge": "web.headers.content_type",
         "zoomeye": "content_type",
         "fofa": "content_type",
-        "meta_desc": "HTTP Content Type"
+        "quake360": null,
+        "netlas": "http.headers.content_type",
+        "onyphe": null,
+        "meta_desc": "HTTP Content Type",
+        "example": "application/json"
+    },
+    {
+        "keyword": "ocrstring",
+        "shodan": null,
+        "censys": null,
+        "binaryedge": null,
+        "zoomeye": null,
+        "fofa": null,
+        "quake360": "img_ocr",
+        "netlas": null,
+        "onyphe": null,
+        "meta_desc": null,
+        "example": "all your files"
     }
 ]
