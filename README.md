@@ -17,16 +17,14 @@ these files are converted to JSON through a set of GitHub Actions, the resulting
 
 ---
 
-official query syntax links;
+current engines;
 
-- [zoomeye.org](https://www.zoomeye.org/doc?Thechannel=user)
-- [binaryedge.io](https://docs.binaryedge.io/search/)
-- [shodan.io](https://beta.shodan.io/search/filters)
-- [censys.io](https://search.censys.io/search/definitions?resource=hosts)
-- [fofa.info](https://en.fofa.info/api)
-- [quake.360.net](https://quake.360.net/quake/#/help?id=5eb238f110d2e850d5c6aec8&title=检索关键词) - translated: [quake-360-net.translate.goog](https://quake-360-net.translate.goog/quake/?_x_tr_sl=ru&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp#/help?id=5eb238f110d2e850d5c6aec8&title=检索关键词)
-- [netlas.io](https://app.netlas.io/responses/)
-- [onyphe.io](https://www.onyphe.io/docs/onyphe-query-language)
+- zoomeye.org
+- censys.io
+- fofa.info
+- quake.360.net
+- netlas.io
+- onyphe.io
 
 to be completed;
 
