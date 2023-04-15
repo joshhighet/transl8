@@ -11,7 +11,10 @@ const urlPrefixes = {
     censys: 'https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=25&virtual_hosts=EXCLUDE&q=',
     binaryedge: 'https://app.binaryedge.io/services/query?page=1&query=',
     zoomeye: 'https://www.zoomeye.org/searchResult?q=',
-    fofa: 'https://en.fofa.info/result?qbase64='
+    fofa: 'https://en.fofa.info/result?qbase64=',
+    quake360: 'https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=',
+    netlas: 'https://app.netlas.io/responses/?page=1&indices=&q=',
+    onyphe: 'https://www.onyphe.io/search?q='
 };
 
 function populateKeywords(data, select) {
