@@ -1,27 +1,26 @@
 keyword,shodan,censys,binaryedge,zoomeye,fofa,quake360,netlas,onyphe,description,example
-jarm,ssl.jarm,services.jarm.fingerprint,jarm_hash,jarm,jarm,,jarm,,62 byte Fingerprint,
-favicon,http.favicon.hash,services.http.response.favicons.md5_hash,web.favicon.mmh3,iconhash,icon_hash,,http.favicon.hash.hash_sha256,,Favicon MurmurHash,
+jarm,ssl.jarm,services.jarm.fingerprint,jarm.jarm_hash,jarm,jarm,,jarm,,62 byte Fingerprint,07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1
+favicon-mmh3,http.favicon.hash,,,iconhash,icon_hash,,,,Favicon MurmurHash,1456990795
+favicon-sha256,,,,,,,http.favicon.hash.hash_sha256,,Favicon SHA256 Hash,6da5620880159634213e197fafca1dde0272153be3e4590818533fab8d040770
+favicon-md5,,services.http.response.favicons.md5_hash,web.favicon.md5,,,,,,Favicon MD5 Hash,f3418a443e7d841097c714d69ec4bcb8
 country,country,location.country_code,country,country,country,country,geo.country,country,Country Code (ISO),NZ
 city,city,location.city,geoip.city_name,city,city,city,geo.city,,City (String),Wellington
-httpstring,http.html,services.http.response.body,body.content,,body,response,http.body,data,HTTP Content Body,Index of /
-httptitle,http.title,services.http.response.html_title,web.title,title,title,,http.title,app.http.title,HTTP Title,Visual Studio Marketplace
-httphash,http.html_hash,services.http.response.body_hash,body.sha256,,,,http.body_sha256,app.http.bodymd5,HTTP Response Body Hash,
-asn,asn,autonomous_system.asn,asn,asn,as_number,asn,whois.asn.number,asn,Autonomous System Number,
-port,port,services.port,port,port,port,port,port,port,Port,
-ip,ip,ip,ip,ip,ip,ip,ip,ip,IP Address,
-header,,,web.headers.all,,,,http.headers,,HTTP Header,
-cidr,net,ip,ip,cidr,ip,ip,whois.net.cidr,subnet,CIDR Block,
-hostname,hostname,dns.names,rdns,hostname,host,hostname,host,forward,Hostname,
-ja3,ssl.ja3s,services.tls.ja3s,ssl.server_info.ja3_digest,,,,,,JA3 Signature,
-org,org,autonomous_system.organization,as_name,organization,as_organization,org,whois.asn.name,geolocus.organization,Autonomous System Org Name,
-domain,hostname,dns.names,rdns_parent,site,domain,domain,domain,hostname,Domain Name,
-ssl_version,ssl.version,services.tls.version,ssl.server_info.ssl_version,ssl_version,ssl_version,,,,SSL/TLS Version,
-os,http.components.classes,services.software.vendor,web.os,os,os,os,,,Operating System,
-webserver,http.server,services.http.response.server_header,web.server,server,server,app,http.headers.server,productvendor,Web Server,
-latitude,location.latitude,location.latitude,geoip.latitude,latitude,latitude,,,latitude,Geographical Latitude,
-longitude,location.longitude,location.longitude,geoip.longitude,longitude,longitude,,,longitude,Geographical Longitude,
-isp,isp,autonomous_system.isp,isp,isp,isp,isp,whois.net.name,geolocus.netname,Internet Service Provider,
-device,http.device_type,services.software.type,device_type,device,device,,,,Device Type,
-ssl_cipher,ssl.cipher,services.tls.cipher_suite,ssl.server_info.ciphers,ssl_cipher,ssl_cipher,,,serial,SSL/TLS Cipher Suite,
-content_type,http.content_type,services.http.response.content_type,web.headers.content_type,content_type,content_type,,http.headers.content_type,,HTTP Content Type,application/json
-ocrstring,,,,,,img_ocr,,,,all your files
+httpstring,http.html,services.http.response.body,web.body.content,freeform,body,response,http.body,data,HTTP Content Body,mimikatz
+httptitle,http.title,services.http.response.html_title,web.title,title,title,,http.title,app.http.title,HTTP Title,System Dashboard - Jira
+http-mmh3,http.html_hash,,web.body.sha256,,,,,,HTTP Response Body MurmurHash,-608186607
+http-md5,,,,,,,,app.http.bodymd5,HTTP Response Body MD5 Hash,fb980452a875a8cdc6cd8a9ea7d3f4e6
+http-sha256,,services.http.response.body_hashes,,,,,http.body_sha256,,HTTP Response Body SHA256 Hash,446a6087825fa73eadb045e5a2e9e2adf7df241b571228187728191d961dda1f
+asn,asn,autonomous_system.asn,asn,asn,asn,asn,whois.asn.number,asn,Autonomous System Number,6185
+port,port,services.port,port,port,port,port,port,port,Port,53
+ip,ip,ip,ip,ip,ip,ip,ip,ip,IP Address,95.173.136.71
+cidr,net,ip,ip,cidr,ip,ip,whois.net.cidr,subnet,CIDR Block,18.9.47.0/24
+hostname,hostname,dns.names,,hostname,host,,host,forward,Hostname,www.cisa.gov
+ja3s,ssl.ja3s,services.tls.ja3s,ssl.server_info.ja3_digest,,,,,,FIX REQD - JA3 Server Signature,b4a7811379107e98efecd0824301816d
+org,org,,,organization,org,,whois.asn.name,,Autonomous System Org Name,Vocus Communications
+domain,hostname,dns.names,,site,domain,domain,domain,hostname,Domain Name,spotify.com
+webserver,freeform,,web.server,server,server,app,http.headers.server,productvendor,Web Server,Cloudflare
+isp,isp,autonomous_system.isp,isp,isp,isp,isp,whois.net.name,geolocus.netname,Internet Service Provider,TBC CHECK
+device,http.device_type,services.software.type,device_type,device,device,,,,Device Type,TBC CHECK
+ssl_cipher,ssl.cipher,services.tls.cipher_suite,ssl.server_info.ciphers,ssl_cipher,ssl_cipher,,,serial,SSL/TLS Cipher Suite,TBC CHECK
+content_type,http.content_type,services.http.response.content_type,web.headers.content_type,content_type,content_type,,http.headers.content_type,,HTTP Content Type,TBC CHECK
+ocrstring,,,,,,img_ocr,,,,TBC CHECK

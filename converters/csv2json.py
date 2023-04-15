@@ -18,3 +18,4 @@ def csv_to_json(csv_file, json_file):
 
 if __name__ == "__main__":
     csv_to_json('queries.csv', 'docs/queries.json')
+    csv_to_json('providers.csv', 'docs/providers.json')
