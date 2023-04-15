@@ -7,7 +7,9 @@
         "query_separator": null,
         "operators/and": "and",
         "operators/or": "or",
-        "operators/not": "not"
+        "operators/not": "not",
+        "as_includeprefix": null,
+        "png_uri": "https://pbs.twimg.com/profile_images/1105606704090267648/oyZUgnFr_400x400.png"
     },
     {
         "name": "censys",
@@ -17,7 +19,9 @@
         "query_separator": " and ",
         "operators/and": "and",
         "operators/or": "or",
-        "operators/not": "not"
+        "operators/not": "not",
+        "as_includeprefix": null,
+        "png_uri": "https://seeklogo.com/images/C/censys-logo-F1BB7A3D1D-seeklogo.com.png"
     },
     {
         "name": "binaryedge",
@@ -27,7 +31,9 @@
         "query_separator": null,
         "operators/and": "and",
         "operators/or": "or",
-        "operators/not": "not"
+        "operators/not": "not",
+        "as_includeprefix": null,
+        "png_uri": "https://www.binaryedge.io/img/logo.png"
     },
     {
         "name": "zoomeye",
@@ -37,7 +43,9 @@
         "query_separator": null,
         "operators/and": "and",
         "operators/or": "or",
-        "operators/not": "not"
+        "operators/not": "not",
+        "as_includeprefix": null,
+        "png_uri": "https://pbs.twimg.com/profile_images/677044790161207296/z_Xny6Gg_400x400.jpg"
     },
     {
         "name": "fofa",
@@ -47,7 +55,9 @@
         "query_separator": null,
         "operators/and": "and",
         "operators/or": "or",
-        "operators/not": "not"
+        "operators/not": "not",
+        "as_includeprefix": null,
+        "png_uri": "https://a.fsdn.com/allura/s/fofa-search-eng/icon?e8b5cbf6ab8866411632881e7905eeedd24b71dd654da3aa2dd5a304d950e80c?&w=148"
     },
     {
         "name": "onyphe",
@@ -57,7 +67,9 @@
         "query_separator": null,
         "operators/and": "AND",
         "operators/or": "OR",
-        "operators/not": "NOT"
+        "operators/not": "NOT",
+        "as_includeprefix": null,
+        "png_uri": "https://pbs.twimg.com/profile_images/899555153019383809/H_4EX1t7_400x400.jpg"
     },
     {
         "name": "quake360",
@@ -67,7 +79,9 @@
         "query_separator": null,
         "operators/and": "and",
         "operators/or": "or",
-        "operators/not": "not"
+        "operators/not": "not",
+        "as_includeprefix": null,
+        "png_uri": null
     },
     {
         "name": "netlas",
@@ -77,7 +91,9 @@
         "query_separator": null,
         "operators/and": "AND",
         "operators/or": "OR",
-        "operators/not": "NOT"
+        "operators/not": "NOT",
+        "as_includeprefix": null,
+        "png_uri": "https://avatars.githubusercontent.com/u/79084675?v=4"
     },
     {
         "name": "criminalip",
@@ -87,6 +103,32 @@
         "query_separator": null,
         "operators/and": null,
         "operators/or": null,
-        "operators/not": " -"
+        "operators/not": " -",
+        "as_includeprefix": null,
+        "png_uri": "https://d4.alternativeto.net/UUwllDybBuhWxVmvFYbvR5cQGNdDPfvZB6zZXNBCi5E/rs:fill:280:280:0/g:ce:0:0/YWJzOi8vZGlzdC9pY29ucy9jcmltaW5hbC1pcF8yMDYxMDAuanBn.png"
+    },
+    {
+        "name": "crimninalip-images",
+        "prefix": "https://www.criminalip.io/en/image/search?query=",
+        "docs": "https://www.criminalip.io/en/developer/filters-and-tags/filters",
+        "kv_separator": ": ",
+        "query_separator": null,
+        "operators/and": null,
+        "operators/or": null,
+        "operators/not": " -",
+        "as_includeprefix": null,
+        "png_uri": "https://d4.alternativeto.net/UUwllDybBuhWxVmvFYbvR5cQGNdDPfvZB6zZXNBCi5E/rs:fill:280:280:0/g:ce:0:0/YWJzOi8vZGlzdC9pY29ucy9jcmltaW5hbC1pcF8yMDYxMDAuanBn.png"
+    },
+    {
+        "name": "shodan-images",
+        "prefix": "https://images.shodan.io/?query=",
+        "docs": "https://beta.shodan.io/search/filters",
+        "kv_separator": ":",
+        "query_separator": null,
+        "operators/and": "and",
+        "operators/or": "or",
+        "operators/not": "not",
+        "as_includeprefix": null,
+        "png_uri": "https://pbs.twimg.com/profile_images/1105606704090267648/oyZUgnFr_400x400.png"
     }
 ]
