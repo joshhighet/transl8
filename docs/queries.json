@@ -9,7 +9,7 @@
         "quake360": null,
         "netlas": "jarm",
         "onyphe": null,
-        "meta_desc": "62 byte Fingerprint",
+        "description": "62 byte Fingerprint",
         "example": "07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1"
     },
     {
@@ -22,7 +22,7 @@
         "quake360": null,
         "netlas": null,
         "onyphe": null,
-        "meta_desc": "Favicon MurmurHash",
+        "description": "Favicon MurmurHash",
         "example": "1456990795"
     },
     {
@@ -35,7 +35,7 @@
         "quake360": null,
         "netlas": "http.favicon.hash.hash_sha256",
         "onyphe": null,
-        "meta_desc": "Favicon SHA256 Hash",
+        "description": "Favicon SHA256 Hash",
         "example": "6da5620880159634213e197fafca1dde0272153be3e4590818533fab8d040770"
     },
     {
@@ -48,7 +48,7 @@
         "quake360": null,
         "netlas": null,
         "onyphe": null,
-        "meta_desc": "Favicon MD5 Hash",
+        "description": "Favicon MD5 Hash",
         "example": "f3418a443e7d841097c714d69ec4bcb8"
     },
     {
@@ -61,7 +61,7 @@
         "quake360": "country",
         "netlas": "geo.country",
         "onyphe": "country",
-        "meta_desc": "Country Code (ISO)",
+        "description": "Country Code (ISO)",
         "example": "NZ"
     },
     {
@@ -74,7 +74,7 @@
         "quake360": "city",
         "netlas": "geo.city",
         "onyphe": null,
-        "meta_desc": "City (String)",
+        "description": "City (String)",
         "example": "Wellington"
     },
     {
@@ -87,7 +87,7 @@
         "quake360": "response",
         "netlas": "http.body",
         "onyphe": "data",
-        "meta_desc": "HTTP Content Body",
+        "description": "HTTP Content Body",
         "example": "mimikatz"
     },
     {
@@ -100,7 +100,7 @@
         "quake360": null,
         "netlas": "http.title",
         "onyphe": "app.http.title",
-        "meta_desc": "HTTP Title",
+        "description": "HTTP Title",
         "example": "System Dashboard - Jira"
     },
     {
@@ -113,7 +113,7 @@
         "quake360": null,
         "netlas": null,
         "onyphe": null,
-        "meta_desc": "HTTP Response Body MurmurHash",
+        "description": "HTTP Response Body MurmurHash",
         "example": "-608186607"
     },
     {
@@ -126,7 +126,7 @@
         "quake360": null,
         "netlas": null,
         "onyphe": "app.http.bodymd5",
-        "meta_desc": "HTTP Response Body MD5 Hash",
+        "description": "HTTP Response Body MD5 Hash",
         "example": "fb980452a875a8cdc6cd8a9ea7d3f4e6"
     },
     {
@@ -139,7 +139,7 @@
         "quake360": null,
         "netlas": "http.body_sha256",
         "onyphe": null,
-        "meta_desc": "HTTP Response Body SHA256 Hash",
+        "description": "HTTP Response Body SHA256 Hash",
         "example": "446a6087825fa73eadb045e5a2e9e2adf7df241b571228187728191d961dda1f"
     },
     {
@@ -152,7 +152,7 @@
         "quake360": "asn",
         "netlas": "whois.asn.number",
         "onyphe": "asn",
-        "meta_desc": "Autonomous System Number",
+        "description": "Autonomous System Number",
         "example": "6185"
     },
     {
@@ -165,7 +165,7 @@
         "quake360": "port",
         "netlas": "port",
         "onyphe": "port",
-        "meta_desc": "Port",
+        "description": "Port",
         "example": "53"
     },
     {
@@ -178,7 +178,7 @@
         "quake360": "ip",
         "netlas": "ip",
         "onyphe": "ip",
-        "meta_desc": "IP Address",
+        "description": "IP Address",
         "example": "95.173.136.71"
     },
     {
@@ -191,7 +191,7 @@
         "quake360": "ip",
         "netlas": "whois.net.cidr",
         "onyphe": "subnet",
-        "meta_desc": "CIDR Block",
+        "description": "CIDR Block",
         "example": "18.9.47.0/24"
     },
     {
@@ -204,7 +204,7 @@
         "quake360": null,
         "netlas": "host",
         "onyphe": "forward",
-        "meta_desc": "Hostname",
+        "description": "Hostname",
         "example": "www.cisa.gov"
     },
     {
@@ -217,7 +217,7 @@
         "quake360": null,
         "netlas": null,
         "onyphe": null,
-        "meta_desc": "FIX REQD - JA3 Server Signature",
+        "description": "FIX REQD - JA3 Server Signature",
         "example": "b4a7811379107e98efecd0824301816d"
     },
     {
@@ -230,7 +230,7 @@
         "quake360": null,
         "netlas": "whois.asn.name",
         "onyphe": null,
-        "meta_desc": "Autonomous System Org Name",
+        "description": "Autonomous System Org Name",
         "example": "Vocus Communications"
     },
     {
@@ -243,7 +243,7 @@
         "quake360": "domain",
         "netlas": "domain",
         "onyphe": "hostname",
-        "meta_desc": "Domain Name",
+        "description": "Domain Name",
         "example": "spotify.com"
     },
     {
@@ -256,7 +256,7 @@
         "quake360": "app",
         "netlas": "http.headers.server",
         "onyphe": "productvendor",
-        "meta_desc": "Web Server",
+        "description": "Web Server",
         "example": "Cloudflare"
     },
     {
@@ -269,7 +269,7 @@
         "quake360": "isp",
         "netlas": "whois.net.name",
         "onyphe": "geolocus.netname",
-        "meta_desc": "Internet Service Provider",
+        "description": "Internet Service Provider",
         "example": "TBC CHECK"
     },
     {
@@ -282,7 +282,7 @@
         "quake360": null,
         "netlas": null,
         "onyphe": null,
-        "meta_desc": "Device Type",
+        "description": "Device Type",
         "example": "TBC CHECK"
     },
     {
@@ -295,7 +295,7 @@
         "quake360": null,
         "netlas": null,
         "onyphe": "serial",
-        "meta_desc": "SSL/TLS Cipher Suite",
+        "description": "SSL/TLS Cipher Suite",
         "example": "TBC CHECK"
     },
     {
@@ -308,7 +308,7 @@
         "quake360": null,
         "netlas": "http.headers.content_type",
         "onyphe": null,
-        "meta_desc": "HTTP Content Type",
+        "description": "HTTP Content Type",
         "example": "TBC CHECK"
     },
     {
@@ -321,7 +321,7 @@
         "quake360": "img_ocr",
         "netlas": null,
         "onyphe": null,
-        "meta_desc": null,
+        "description": null,
         "example": "TBC CHECK"
     }
 ]
