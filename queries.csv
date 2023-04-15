@@ -1,27 +1,27 @@
-keyword,shodan,shodan-images,censys,binaryedge,zoomeye,fofa,quake360,netlas,onyphe,crimninalip-images,criminalip,description,example
-jarm,ssl.jarm,,services.jarm.fingerprint,jarm.jarm_hash,jarm,jarm,,jarm,,,jarm,62 byte Fingerprint,07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1
-favicon-mmh3,http.favicon.hash,,,,iconhash,icon_hash,,,,,favicon,Favicon MurmurHash,1456990795
-favicon-sha256,,,,,,,,http.favicon.hash.hash_sha256,,,,Favicon SHA256 Hash,6da5620880159634213e197fafca1dde0272153be3e4590818533fab8d040770
-favicon-md5,,,services.http.response.favicons.md5_hash,web.favicon.md5,,,,,,,,Favicon MD5 Hash,f3418a443e7d841097c714d69ec4bcb8
-country,country,country,location.country_code,country,country,country,country,geo.country,country,,country,Country Code (ISO),NZ
-city,city,city,location.city,geoip.city_name,city,city,city,geo.city,,,city,City (String),Wellington
-httpstring,http.html,,services.http.response.body,web.body.content,freeform,body,response,http.body,data,,freeform,HTTP Content Body,mimikatz
-httptitle,http.title,,services.http.response.html_title,web.title,title,title,,http.title,app.http.title,,html_meta_title,HTTP Title,System Dashboard - Jira
-http-mmh3,http.html_hash,,,web.body.sha256,,,,,,,,HTTP Response Body MurmurHash,-608186607
-http-md5,,,,,,,,,app.http.bodymd5,,,HTTP Response Body MD5 Hash,fb980452a875a8cdc6cd8a9ea7d3f4e6
-http-sha256,,,services.http.response.body_hashes,,,,,http.body_sha256,,,,HTTP Response Body SHA256 Hash,446a6087825fa73eadb045e5a2e9e2adf7df241b571228187728191d961dda1f
-http-responsecode,,,,,,,,,,,status_code,,
-asn,asn,asn,autonomous_system.asn,asn,asn,asn,asn,whois.asn.number,asn,,,Autonomous System Number,6185
-port,port,port,services.port,port,port,port,port,port,port,port,port,Port,53
-ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,IP Address,95.173.136.71
-cidr,net,net,ip,ip,cidr,ip,ip,whois.net.cidr,subnet,,,CIDR Block,18.9.47.0/24
-hostname,hostname,hostname,dns.names,,hostname,host,,host,forward,,hostname,Hostname,www.cisa.gov
-ja3s,ssl.ja3s,,services.tls.ja3s,ssl.server_info.ja3_digest,,,,,,,,FIX REQD - JA3 Server Signature,b4a7811379107e98efecd0824301816d
-org,org,org,,,organization,org,,whois.asn.name,,,as_name,Autonomous System Org Name,Vocus Communications
-domain,hostname,hostname,dns.names,,site,domain,domain,domain,hostname,,,Domain Name,spotify.com
-webserver,freeform,,,web.server,server,server,app,http.headers.server,productvendor,,,Web Server,Cloudflare
-isp,isp,isp,autonomous_system.isp,isp,isp,isp,isp,whois.net.name,geolocus.netname,,isp,Internet Service Provider,TBC CHECK
-device,http.device_type,,services.software.type,device_type,device,device,,,,,,Device Type,TBC CHECK
-ssl_cipher,ssl.cipher,,services.tls.cipher_suite,ssl.server_info.ciphers,ssl_cipher,ssl_cipher,,,serial,,,SSL/TLS Cipher Suite,TBC CHECK
-content_type,http.content_type,,services.http.response.content_type,web.headers.content_type,content_type,content_type,,http.headers.content_type,,,,HTTP Content Type,TBC CHECK
-ocrstring,,freeform,,,,,img_ocr,,,freeform,,,TBC CHECK
+keyword,shodan,shodan-images,censys,binaryedge,zoomeye,fofa,quake360,netlas,onyphe,crimninalip-images,criminalip,description,constraint,example
+jarm,ssl.jarm,,services.jarm.fingerprint,jarm.jarm_hash,jarm,jarm,,jarm,,,jarm,62 byte Fingerprint,^([a-fA-F0-9]{2}-){9}[a-fA-F0-9]{2}$,07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1
+favicon-mmh3,http.favicon.hash,,,,iconhash,icon_hash,,,,,favicon,Favicon MurmurHash,^[0-9a-fA-F]{8}$,1456990795
+favicon-sha256,,,,,,,,http.favicon.hash.hash_sha256,,,,Favicon SHA256 Hash,^[a-fA-F0-9]{64}$,6da5620880159634213e197fafca1dde0272153be3e4590818533fab8d040770
+favicon-md5,,,services.http.response.favicons.md5_hash,web.favicon.md5,,,,,,,,Favicon MD5 Hash,^[a-fA-F0-9]{32}$,f3418a443e7d841097c714d69ec4bcb8
+country,country,country,location.country_code,country,country,country,country,geo.country,country,,country,Country Code (ISO),^[A-Za-z]{2}$,NZ
+city,city,city,location.city,geoip.city_name,city,city,city,geo.city,,,city,City (String),^[A-Za-z\s.-]+$,Wellington
+httpstring,http.html,,services.http.response.body,web.body.content,freeform,body,response,http.body,data,,freeform,HTTP Content Body,,mimikatz
+httptitle,http.title,,services.http.response.html_title,web.title,title,title,,http.title,app.http.title,,html_meta_title,HTTP Title,,System Dashboard - Jira
+http-mmh3,http.html_hash,,,web.body.sha256,,,,,,,,HTTP Response Body MurmurHash,^[0-9a-fA-F]{8}$,-608186607
+http-md5,,,,,,,,,app.http.bodymd5,,,HTTP Response Body MD5 Hash,^[a-fA-F0-9]{32}$,fb980452a875a8cdc6cd8a9ea7d3f4e6
+http-sha256,,,services.http.response.body_hashes,,,,,http.body_sha256,,,,HTTP Response Body SHA256 Hash,^[a-fA-F0-9]{64}$,446a6087825fa73eadb045e5a2e9e2adf7df241b571228187728191d961dda1f
+http-responsecode,,,,,,,,,,,status_code,,^(1\d{2}|2\d{2}|3\d{2}|4\d{2}|5\d{2})$,
+asn,asn,asn,autonomous_system.asn,asn,asn,asn,asn,whois.asn.number,asn,,,Autonomous System Number,^[0-9]+$,6185
+port,port,port,services.port,port,port,port,port,port,port,port,port,Port,"^(?:[1-9]\d{0,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$",53
+ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,IP Address,"^(?:(?:[0-9]{1,3}\.){3}[0-9]{1,3})|(?:[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){7}|[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6}::[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6})$",95.173.136.71
+cidr,net,net,ip,ip,cidr,ip,ip,whois.net.cidr,subnet,,,CIDR Block,"^(?:(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.){3}(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])(?:\/(?:[1-2][0-9]|3[0-2]|\d))?$|^(?:[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){7}|[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6}::[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6})(?:\/(?:[1-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8]))?$",18.9.47.0/24
+hostname,hostname,hostname,dns.names,,hostname,host,,host,forward,,hostname,Hostname,"^(?=.{1,253}$)[a-zA-Z0-9](?!.*--)[a-zA-Z0-9-]{0,61}[a-zA-Z0-9](\.[a-zA-Z]{2,})+$",www.cisa.gov
+ja3s,ssl.ja3s,,services.tls.ja3s,ssl.server_info.ja3_digest,,,,,,,,FIX REQD - JA3 Server Signature,^[0-9a-fA-F]{32}$,b4a7811379107e98efecd0824301816d
+org,org,org,,,organization,org,,whois.asn.name,,,as_name,Autonomous System Org Name,,Vocus Communications
+domain,hostname,hostname,dns.names,,site,domain,domain,domain,hostname,,,Domain Name,"^(?=.{1,253}$)[a-zA-Z0-9](?!.*--)[a-zA-Z0-9-]{0,61}[a-zA-Z0-9](\.[a-zA-Z]{2,})+$",spotify.com
+webserver,freeform,,,web.server,server,server,app,http.headers.server,productvendor,,,Web Server,,Cloudflare
+isp,isp,isp,autonomous_system.isp,isp,isp,isp,isp,whois.net.name,geolocus.netname,,isp,Internet Service Provider,,
+device,http.device_type,,services.software.type,device_type,device,device,,,,,,Device Type,,
+ssl_cipher,ssl.cipher,,services.tls.cipher_suite,ssl.server_info.ciphers,ssl_cipher,ssl_cipher,,,serial,,,SSL/TLS Cipher Suite,,
+content_type,http.content_type,,services.http.response.content_type,web.headers.content_type,content_type,content_type,,http.headers.content_type,,,,HTTP Content Type,,
+ocrstring,,freeform,,,,,img_ocr,,,freeform,,,,
