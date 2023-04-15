@@ -129,8 +129,6 @@ function createQueryDiv(platform, data, keywords, values) {
             break;
         }
     }
-    console.log(`unavailable: ${unavailable}`);
-    console.log(`tooltipText: ${tooltipText}`);
     if (unavailable) {
         queryDiv.classList.add("unavailable");
         const tooltipP = document.createElement('p');
@@ -143,16 +141,13 @@ function createQueryDiv(platform, data, keywords, values) {
         const queryP = document.createElement('p');
         queryP.textContent = queryTextUI.trim();
         queryDiv.appendChild(queryP);
-
         const copyButton = createCopyButton(queryTextUI.trim());
         queryDiv.appendChild(copyButton);
-
         const openButton = createOpenButton(platform, queryText);
         queryDiv.appendChild(openButton);
     }
     return queryDiv;
 }
-
 
 function createCopyButton(text) {
     const copyButton = document.createElement('button');
@@ -171,7 +166,6 @@ function createCopyButton(text) {
     });
     return copyButton;
 }
-
 
 function createOpenButton(platform, queryText) {
     const openButton = document.createElement('button');
