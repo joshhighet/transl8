@@ -1,0 +1,160 @@
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  padding: 20px;
+  font-size: 24px;
+}
+
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.query-inputs-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#query-inputs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.keyword-input {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.query-keyword {
+  font-size: 14px;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.query-value {
+  font-size: 14px;
+  padding: 10px;
+  width: 200px;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+  border: 1px solid #333;
+}
+
+.remove-button {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.remove-button:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #fff;
+}
+
+.query {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.query h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.query p {
+  font-family: monospace;
+  background-color: #000;
+  color: #0ff;
+  padding: 10px;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
+.copy-button,
+.open-button {
+background-color: #333;
+color: #fff;
+border: none;
+padding: 10px 20px;
+border-radius: 20px;
+cursor: pointer;
+margin-right: 10px;
+margin-top: 10px;
+}
+
+.copy-button:hover,
+.open-button:hover {
+background-color: #fff;
+color: #333;
+}
+
+.unavailable {
+opacity: 0.5;
+}
+
+.unavailable .copy-button,
+.unavailable .open-button {
+cursor: not-allowed;
+}
+
+#github-banner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5em;
+  background-color: #333;
+  color: #fff;
+}
+
+#github-banner a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+#github-banner i {
+  margin-right: 0.5em;
+}
