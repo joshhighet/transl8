@@ -187,7 +187,7 @@ function buildQueries(data) {
     const queryResults = document.getElementById('query-results');
     queryResults.innerHTML = '';
     for (const platform in data[0]) {
-        if (platform !== 'example' && platform !== 'description' && platform !== 'keyword') {
+        if (platform !== 'example' && platform !== 'description' && platform !== 'keyword' && platform !== 'constraint') {
             const queryDiv = createQueryDiv(platform, data, keywords, values);
             queryResults.appendChild(queryDiv);
         }
