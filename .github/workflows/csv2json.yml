@@ -3,7 +3,7 @@ name: csv to json
 on:
   push:
     paths:
-      - 'queries.csv'
+      - '*.csv'
       - '.github/workflows/csv2json.yml'
   workflow_dispatch:
 
@@ -13,9 +13,12 @@ jobs:
     steps:
       - name: checkout the repo
         uses: actions/checkout@v2
-      - name: generate json from csv
+      - name: generate providers.json
         run: |
-          python3 converters/csv2json.py
+          python3 docs/csv2json.py providers.csv docs/providers.json
+      - name: generate queries.json
+        run: |
+          python3 docs/csv2json.py queries.csv docs/queries.json
       - name: save changes
         run: |
           git config user.name github-actions
