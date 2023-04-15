@@ -148,7 +148,15 @@ main {
 }
 
 .query p {
-  margin-bottom: 1rem;
+  font-family: monospace;
+  font-size: 0.6rem;
+  background-color: #000;
+  color: #0ff;
+  padding: 10px;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow: auto;
+  border-top-left-radius: 5px;
 }
 
 .copy-button,
