@@ -108,7 +108,7 @@
         "png_uri": "https://d4.alternativeto.net/UUwllDybBuhWxVmvFYbvR5cQGNdDPfvZB6zZXNBCi5E/rs:fill:280:280:0/g:ce:0:0/YWJzOi8vZGlzdC9pY29ucy9jcmltaW5hbC1pcF8yMDYxMDAuanBn.png"
     },
     {
-        "name": "crimninalip-images",
+        "name": "criminalip-images",
         "prefix": "https://www.criminalip.io/en/image/search?query=",
         "docs": "https://www.criminalip.io/en/developer/filters-and-tags/filters",
         "kv_separator": ": ",
