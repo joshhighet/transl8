@@ -130,5 +130,17 @@
         "operators/not": "not",
         "as_includeprefix": "TRUE",
         "png_uri": "https://pbs.twimg.com/profile_images/1105606704090267648/oyZUgnFr_400x400.png"
+    },
+    {
+        "name": "urlscan",
+        "prefix": "https://urlscan.io/search/#",
+        "docs": "https://urlscan.io/docs/search/",
+        "kv_separator": ":",
+        "query_separator": null,
+        "operators/and": "AND",
+        "operators/or": "OR",
+        "operators/not": "NOT",
+        "as_includeprefix": "TRUE",
+        "png_uri": "https://urlscan.io/img/urlscan_256.png"
     }
 ]
