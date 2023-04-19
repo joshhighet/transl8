@@ -69,7 +69,7 @@
         "operators/or": "OR",
         "operators/not": "NOT",
         "as_includeprefix": "TRUE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/onyphe.png"
+        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/onyphe.jpg"
     },
     {
         "name": "quake360",
@@ -141,6 +141,6 @@
         "operators/or": "OR",
         "operators/not": "NOT",
         "as_includeprefix": "TRUE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/urlscan.png"
+        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/urlscan.jpg"
     }
 ]
