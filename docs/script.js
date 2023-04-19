@@ -58,7 +58,6 @@ function populateKeywords(queriesjson, select) {
 }
 
 function setupForm(queriesjson, providers) {
-    console.log(urlPrefixes);
     addKeywordInput(queriesjson);
     const addButton = document.getElementById('add-query');
     addButton.addEventListener('click', () => addKeywordInput(queriesjson));
@@ -133,7 +132,7 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
             let queryTermUI = `${matchingqueriesjson[platform]}${kv_separator}"${value}"`;            
             queryText += `${queryTermUI}`;
         }
-        if (matchingqueriesjson[platform] === undefined && value) {
+        if (matchingqueriesjson[platform] == null) {
             unavailable = true;
             tooltipText = `The keyword "${keyword}" is not available for ${platform}.`;
             break;
