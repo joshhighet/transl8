@@ -126,8 +126,15 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
     let tooltipText = '';
     for (let i = 0; i < keywords.length; i++) {
         const keyword = keywords[i];
-        const value = values[i];
         const matchingqueriesjson = queriesjson.find(item => item.keyword === keyword);
+        asnPrefix = '';
+        if (keyword === 'asn') {
+            const setasn = providers.find(provider => provider.name === platform).as_includeprefix;
+            if (setasn === 'TRUE') {
+                asnPrefix = 'AS';
+            }
+        }
+        const value = asnPrefix + values[i];
         if (matchingqueriesjson[platform] && value) {
             let queryTermUI = `${matchingqueriesjson[platform]}${kv_separator}"${value}"`;            
             queryText += `${queryTermUI}`;
