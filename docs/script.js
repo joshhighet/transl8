@@ -78,7 +78,6 @@ function addKeywordInput(queriesjson) {
         buildQueries(queriesjson);
         const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
         const values = Array.from(document.querySelectorAll('.query-value')).map(element => element.value);
-        updateURLQueryParameters(keywords, values);
     });
     keywordDiv.appendChild(removeButton);
     const metaDescSpan = document.createElement('span');
@@ -113,9 +112,6 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
     queryDiv.innerHTML = `
       <div class="provider-header">
         <h3>${platform}</h3>
-        <a href="${providerDocsURI}" target="_blank">
-          <img class="provider-logo" src="${providerlogouri}" alt="${platform} logo" />
-        </a>
       </div>`;
     let queryText = '';
     let unavailable = false;
@@ -153,8 +149,11 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
     queryImg.classList.add('provider-logo');
     queryImg.src = providerlogouri;
     queryImg.alt = `${platform} logo`;
-    queryImg.style.pointerEvents = "none";
-    queryDiv.appendChild(queryImg);
+    const imageAnchor = document.createElement('a');
+    imageAnchor.href = providerDocsURI;
+    imageAnchor.target = "_blank";
+    imageAnchor.appendChild(queryImg);
+    queryDiv.appendChild(imageAnchor);
     if (unavailable) {
         queryDiv.classList.add("unavailable");
         const tooltipP = document.createElement('p');
@@ -174,6 +173,7 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
     }
     return queryDiv;
 }
+
 
 function createCopyButton(text) {
     const copyButton = document.createElement('button');

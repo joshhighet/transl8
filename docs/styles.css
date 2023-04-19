@@ -139,7 +139,6 @@ main {
 
 .query.unavailable {
   opacity: 0.4;
-  pointer-events: none;
 }
 
 .query h3 {
