@@ -19,6 +19,9 @@ function populateKeywords(queriesjson, select) {
         if (keyword.example) {
             option.setAttribute('queriesjson-example', keyword.example);
         }
+        if (keyword.keyword === 'ip') {
+            option.selected = true;
+        }
     }
     select.addEventListener('change', (event) => {
         const selectedOption = event.target.selectedOptions[0];
