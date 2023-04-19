@@ -8,8 +8,8 @@ this repository is used to generate the frontend, [transl8.watchdawg.io](https:/
 
 two CSV's define the data presented on the above site. when submitting additional queries, fixes or search engines, PR one of the following and the frontend will reflect accordingly
 
-- [ `queries.csv` ]( queries.csv ) - the unified query lookup table
-- [ `providers.csv` ]( providers.csv ) - information on search-providers used such as URL constructors and platform specific operators
+- [ `queries.csv` ](https://github.com/joshhighet/transl8/blob/main/queries.csv) - the unified query lookup table
+- [ `providers.csv` ](https://github.com/joshhighet/transl8/blob/main/providers.csv) - information on search-providers used such as URL constructors and platform specific operators
 
 | Platform        | Login Location | Query Documentation |
 |-----------------|----------------|---------------------|
