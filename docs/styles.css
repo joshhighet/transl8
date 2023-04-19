@@ -19,7 +19,6 @@ h1 {
   font-size: 2rem;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -125,7 +124,6 @@ main {
   max-width: 1200px;
 }
 
-/* Query */
 .query {
   display: flex;
   flex-direction: column;
@@ -135,6 +133,8 @@ main {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: relative;
+  float: left;
+  display: block;
 }
 
 .query.unavailable {
@@ -145,6 +145,7 @@ main {
 .query h3 {
   margin-bottom: 0.5rem;
   color: #333;
+  font-size: medium;
 }
 
 .query p {
@@ -155,11 +156,36 @@ main {
   padding: 10px;
   margin: 0;
   white-space: pre-wrap;
-  overflow: auto;
-  border-top-left-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  word-wrap: anywhere;
+  margin-bottom: .3rem;
 }
 
-.copy-button,
+.provider-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 1rem;
+  padding-right: 1rem;
+}
+
+.copy-button {
+  display: inline-block;
+  border: none;
+  background-color: #0070f3;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 10%;
+}
+
 .open-button {
   display: inline-block;
   border: none;
@@ -168,15 +194,8 @@ main {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.copy-button {
-  margin-right: 1rem;
-}
-
-.copy-button i {
-  margin-right: 5px;
+  max-width: 80%;
+  float: right;
 }
 
 .copy-button:hover,
@@ -210,3 +229,4 @@ footer a {
 footer a:hover {
   color: #f9d053;
 }
+

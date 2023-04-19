@@ -7,17 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const urlPrefixes = {
-    shodan: 'https://www.shodan.io/search?query=',
-    censys: 'https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=25&virtual_hosts=EXCLUDE&q=',
-    binaryedge: 'https://app.binaryedge.io/services/query?page=1&query=',
-    zoomeye: 'https://www.zoomeye.org/searchResult?q=',
-    fofa: 'https://en.fofa.info/result?q=',
-    quake360: 'https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=',
-    netlas: 'https://app.netlas.io/responses/?page=1&indices=&q=',
-    onyphe: 'https://www.onyphe.io/search?q='
-};
-
 function populateKeywords(queriesjson, select) {
     for (const keyword of queriesjson) {
         const option = document.createElement('option');
@@ -62,7 +51,6 @@ function setupForm(queriesjson, providers) {
     const addButton = document.getElementById('add-query');
     addButton.addEventListener('click', () => addKeywordInput(queriesjson));
 }
-
 
 function addKeywordInput(queriesjson) {
     const keywordDiv = document.createElement('div');
@@ -117,10 +105,18 @@ loadProviders();
 
 function createQueryDiv(platform, queriesjson, keywords, values, providers) {
     const provider = providers.find(provider => provider.name === platform);
-    const kv_separator = provider['kv_separator'];
+    const providerDocsURI = provider.docs;
+    const kv_separator = provider.kv_separator;
     const queryDiv = document.createElement('div');
     queryDiv.classList.add('query');
-    queryDiv.innerHTML = `<h3>${platform}</h3>`;
+    const providerlogouri = provider.png_uri;
+    queryDiv.innerHTML = `
+      <div class="provider-header">
+        <h3>${platform}</h3>
+        <a href="${providerDocsURI}" target="_blank">
+          <img class="provider-logo" src="${providerlogouri}" alt="${platform} logo" />
+        </a>
+      </div>`;
     let queryText = '';
     let unavailable = false;
     let tooltipText = '';
@@ -129,7 +125,7 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
         const matchingqueriesjson = queriesjson.find(item => item.keyword === keyword);
         asnPrefix = '';
         if (keyword === 'asn') {
-            const setasn = providers.find(provider => provider.name === platform).as_includeprefix;
+            const setasn = provider.as_includeprefix;
             if (setasn === 'TRUE') {
                 asnPrefix = 'AS';
             }
@@ -153,6 +149,12 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
             }
         }
     }
+    const queryImg = document.createElement('img');
+    queryImg.classList.add('provider-logo');
+    queryImg.src = providerlogouri;
+    queryImg.alt = `${platform} logo`;
+    queryImg.style.pointerEvents = "none";
+    queryDiv.appendChild(queryImg);
     if (unavailable) {
         queryDiv.classList.add("unavailable");
         const tooltipP = document.createElement('p');
