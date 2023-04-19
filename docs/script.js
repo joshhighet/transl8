@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('queries.json')
-        .then(response => response.json())
-        .then(data => {
-            setupForm(data);
-        });
+    Promise.all([
+        fetch('queries.json').then(response => response.json()),
+        fetch('providers.json').then(response => response.json())
+    ]).then(([queriesqueriesjson, providersqueriesjson]) => {
+        setupForm(queriesqueriesjson, providersqueriesjson);
+    });
 });
 
 const urlPrefixes = {
@@ -11,29 +12,29 @@ const urlPrefixes = {
     censys: 'https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=25&virtual_hosts=EXCLUDE&q=',
     binaryedge: 'https://app.binaryedge.io/services/query?page=1&query=',
     zoomeye: 'https://www.zoomeye.org/searchResult?q=',
-    fofa: 'https://en.fofa.info/result?qbase64=',
+    fofa: 'https://en.fofa.info/result?q=',
     quake360: 'https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=',
     netlas: 'https://app.netlas.io/responses/?page=1&indices=&q=',
     onyphe: 'https://www.onyphe.io/search?q='
 };
 
-function populateKeywords(data, select) {
-    for (const keyword of data) {
+function populateKeywords(queriesjson, select) {
+    for (const keyword of queriesjson) {
         const option = document.createElement('option');
         option.value = keyword.keyword;
         option.textContent = keyword.keyword;
         select.appendChild(option);
         if (keyword.description) {
-            option.setAttribute('data-meta-desc', keyword.description);
+            option.setAttribute('queriesjson-meta-desc', keyword.description);
         }
         if (keyword.example) {
-            option.setAttribute('data-example', keyword.example);
+            option.setAttribute('queriesjson-example', keyword.example);
         }
     }
     select.addEventListener('change', (event) => {
         const selectedOption = event.target.selectedOptions[0];
-        const metaDesc = selectedOption.getAttribute('data-meta-desc');
-        const example = selectedOption.getAttribute('data-example');
+        const metaDesc = selectedOption.getAttribute('queriesjson-meta-desc');
+        const example = selectedOption.getAttribute('queriesjson-example');
         const queryInputDiv = event.target.parentNode;
         const metaDescSpan = queryInputDiv.querySelector('.meta-desc');
         const input = queryInputDiv.querySelector('.query-value');
@@ -52,32 +53,37 @@ function populateKeywords(data, select) {
         } else {
             input.placeholder = 'enter value';
         }
-        buildQueries(data);
+        buildQueries(queriesjson);
     });
 }
 
-function setupForm(data) {
-    addKeywordInput(data);
+function setupForm(queriesjson, providers) {
+    const urlPrefixes = providers.reduce((acc, provider) => {
+        acc[provider.name] = provider.prefix;
+        return acc;
+    }, {});
+    addKeywordInput(queriesjson);
     const addButton = document.getElementById('add-query');
-    addButton.addEventListener('click', () => addKeywordInput(data));
+    addButton.addEventListener('click', () => addKeywordInput(queriesjson));
 }
 
-function addKeywordInput(data) {
+
+function addKeywordInput(queriesjson) {
     const keywordDiv = document.createElement('div');
     keywordDiv.classList.add('keyword-input');
     const select = document.createElement('select');
     select.classList.add('query-keyword');
-    populateKeywords(data, select);
-    select.addEventListener('change', () => buildQueries(data));
+    populateKeywords(queriesjson, select);
+    select.addEventListener('change', () => buildQueries(queriesjson));
     const input = document.createElement('input');
     input.type = 'text';
     input.classList.add('query-value');
-    const matchingData = data.find(item => item.keyword === select.value);
-    const example = matchingData.example;
+    const matchingqueriesjson = queriesjson.find(item => item.keyword === select.value);
+    const example = matchingqueriesjson.example;
     input.placeholder = example ? example : 'enter value';
-    select.options[select.selectedIndex].setAttribute('data-meta-desc', matchingData.description);
-    select.options[select.selectedIndex].setAttribute('data-example', example);
-    input.addEventListener('input', () => buildQueries(data));
+    select.options[select.selectedIndex].setAttribute('queriesjson-meta-desc', matchingqueriesjson.description);
+    select.options[select.selectedIndex].setAttribute('queriesjson-example', example);
+    input.addEventListener('input', () => buildQueries(queriesjson));
     keywordDiv.appendChild(select);
     keywordDiv.appendChild(input);
     const removeButton = document.createElement('button');
@@ -85,7 +91,7 @@ function addKeywordInput(data) {
     removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
     removeButton.addEventListener('click', () => {
         keywordDiv.remove();
-        buildQueries(data);
+        buildQueries(queriesjson);
         const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
         const values = Array.from(document.querySelectorAll('.query-value')).map(element => element.value);
         updateURLQueryParameters(keywords, values);
@@ -95,38 +101,53 @@ function addKeywordInput(data) {
     metaDescSpan.classList.add('meta-desc');
     metaDescSpan.style.fontStyle = 'italic';
     metaDescSpan.style.marginTop = '5px';
-    metaDescSpan.textContent = matchingData.description;
+    metaDescSpan.textContent = matchingqueriesjson.description;
     keywordDiv.appendChild(metaDescSpan);
     const queryInputs = document.getElementById('query-inputs');
     queryInputs.appendChild(keywordDiv);
     const event = new Event('change');
     select.dispatchEvent(event);
-    buildQueries(data);
+    buildQueries(queriesjson);
 }
 
-function createQueryDiv(platform, data, keywords, values) {
+let providers;
+
+async function loadProviders() {
+  const response = await fetch("providers.json");
+  providers = await response.json();
+}
+
+loadProviders();
+
+function createQueryDiv(platform, queriesjson, keywords, values, providers) {
+    const provider = providers.find(provider => provider.name === platform);
+    const kv_separator = provider['kv_separator'];
     const queryDiv = document.createElement('div');
     queryDiv.classList.add('query');
     queryDiv.innerHTML = `<h3>${platform}</h3>`;
     let queryText = '';
-    let queryTextUI = '';
     let unavailable = false;
     let tooltipText = '';
-
     for (let i = 0; i < keywords.length; i++) {
         const keyword = keywords[i];
         const value = values[i];
-        const matchingData = data.find(item => item.keyword === keyword);
-        if (matchingData[platform] && value) {
-            let queryTerm = `${matchingData[platform]}:${value}`;
-            let queryTermUI = `${matchingData[platform]}:"${value}"`;
-            queryTextUI += `${queryTermUI} `;
-            queryText += `${queryTerm} `;
+        const matchingqueriesjson = queriesjson.find(item => item.keyword === keyword);
+        if (matchingqueriesjson[platform] && value) {
+            let queryTermUI = `${matchingqueriesjson[platform]}${kv_separator}"${value}"`;            
+            queryText += `${queryTermUI}`;
         }
-        if (matchingData[platform] === undefined && value) {
+        if (matchingqueriesjson[platform] === undefined && value) {
             unavailable = true;
             tooltipText = `The keyword "${keyword}" is not available for ${platform}.`;
             break;
+        }
+        if (i < keywords.length - 1) {
+            if (provider['query_separator']) {
+                queryText += provider['query_separator'];
+            }
+            else {
+                queryText += ' ';
+            }
         }
     }
     if (unavailable) {
@@ -139,11 +160,11 @@ function createQueryDiv(platform, data, keywords, values) {
     }
     if (queryText) {
         const queryP = document.createElement('p');
-        queryP.textContent = queryTextUI.trim();
+        queryP.textContent = queryText.trim();
         queryDiv.appendChild(queryP);
-        const copyButton = createCopyButton(queryTextUI.trim());
+        const copyButton = createCopyButton(queryText.trim());
         queryDiv.appendChild(copyButton);
-        const openButton = createOpenButton(platform, queryText);
+        const openButton = createOpenButton(platform, queryText.trim());
         queryDiv.appendChild(openButton);
     }
     return queryDiv;
@@ -181,15 +202,15 @@ function createOpenButton(platform, queryText) {
     return openButton;
 }
 
-function buildQueries(data) {
+function buildQueries(queriesjson) {
     const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
     const values = Array.from(document.querySelectorAll('.query-value')).map(element => element.value);
-    const queryResults = document.getElementById('query-results');
-    queryResults.innerHTML = '';
-    for (const platform in data[0]) {
+    const queryRequest = document.getElementById('query-results');
+    queryRequest.innerHTML = '';
+    for (const platform in queriesjson[0]) {
         if (platform !== 'example' && platform !== 'description' && platform !== 'keyword' && platform !== 'constraint') {
-            const queryDiv = createQueryDiv(platform, data, keywords, values);
-            queryResults.appendChild(queryDiv);
+            const queryDiv = createQueryDiv(platform, queriesjson, keywords, values, providers);
+            queryRequest.appendChild(queryDiv);
         }
     }
 }
