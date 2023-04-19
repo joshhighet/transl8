@@ -58,10 +58,7 @@ function populateKeywords(queriesjson, select) {
 }
 
 function setupForm(queriesjson, providers) {
-    const urlPrefixes = providers.reduce((acc, provider) => {
-        acc[provider.name] = provider.prefix;
-        return acc;
-    }, {});
+    console.log(urlPrefixes);
     addKeywordInput(queriesjson);
     const addButton = document.getElementById('add-query');
     addButton.addEventListener('click', () => addKeywordInput(queriesjson));
@@ -189,15 +186,13 @@ function createCopyButton(text) {
 }
 
 function createOpenButton(platform, queryText) {
+    const thisPrefix = providers.find(provider => provider.name === platform).prefix;
     const openButton = document.createElement('button');
     openButton.classList.add('open-button');
     openButton.textContent = 'open in search engine';
     openButton.addEventListener('click', () => {
-        if (urlPrefixes[platform]) {
-            window.open(`${urlPrefixes[platform]}${encodeURIComponent(queryText)}`, '_blank');
-        } else {
-            alert('URL prefix not found for this platform.');
-        }
+    window.open(`${thisPrefix}${encodeURIComponent(queryText)}`, '_blank');
+
     });
     return openButton;
 }
