@@ -200,7 +200,6 @@ function createOpenButton(platform, queryText) {
     openButton.textContent = 'open in search engine';
     openButton.addEventListener('click', () => {
     window.open(`${thisPrefix}${encodeURIComponent(queryText)}`, '_blank');
-
     });
     return openButton;
 }
