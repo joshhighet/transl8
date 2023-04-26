@@ -180,6 +180,24 @@
         "example": "fb980452a875a8cdc6cd8a9ea7d3f4e6"
     },
     {
+        "keyword": "http-sha1",
+        "shodan": null,
+        "shodan-images": null,
+        "censys": "services.http.response.body_hashes",
+        "binaryedge": null,
+        "zoomeye": null,
+        "fofa": null,
+        "quake360": null,
+        "netlas": null,
+        "onyphe": null,
+        "criminalip-images": null,
+        "criminalip": null,
+        "urlscan": null,
+        "description": "HTTP Response Body SHA1 Hash",
+        "constraint": "^[a-fA-F0-9]{40}$",
+        "example": "b5e2a9fb1f8a4aad3c7127c769af4c780b47bef4"
+    },
+    {
         "keyword": "http-sha256",
         "shodan": null,
         "shodan-images": null,
@@ -327,7 +345,7 @@
         "keyword": "org",
         "shodan": "org",
         "shodan-images": "org",
-        "censys": "autonomous_system.name",
+        "censys": "autonomous_system.organization",
         "binaryedge": null,
         "zoomeye": "organization",
         "fofa": "org",
