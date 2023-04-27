@@ -9,17 +9,18 @@ httpstring,http.html,,services.http.response.body,web.body.content,freeform,body
 httptitle,http.title,,services.http.response.html_title,web.title,title,title,,http.title,app.http.title,,html_meta_title,page.title,HTTP Title,,System Dashboard - Jira
 http-mmh3,http.html_hash,,,web.body.sha256,,,,,,,,,HTTP Response Body MurmurHash,^[0-9a-fA-F]{8}$,-608186607
 http-md5,,,,,,,,,app.http.bodymd5,,,,HTTP Response Body MD5 Hash,^[a-fA-F0-9]{32}$,fb980452a875a8cdc6cd8a9ea7d3f4e6
+http-sha1,,,services.http.response.body_hashes,,,,,,,,,,HTTP Response Body SHA1 Hash,^[a-fA-F0-9]{40}$,b5e2a9fb1f8a4aad3c7127c769af4c780b47bef4
 http-sha256,,,services.http.response.body_hashes,,,,,http.body_sha256,,,,hash,HTTP Response Body SHA256 Hash,^[a-fA-F0-9]{64}$,446a6087825fa73eadb045e5a2e9e2adf7df241b571228187728191d961dda1f
-http-responsecode,,,,,,,,,,,status_code,page.status,,^(1\d{2}|2\d{2}|3\d{2}|4\d{2}|5\d{2})$,
+http-responsecode,,,services.http.response.status_code,,,,,,,,status_code,page.status,,^(1\d{2}|2\d{2}|3\d{2}|4\d{2}|5\d{2})$,
 asn,asn,asn,autonomous_system.asn,asn,asn,asn,asn,whois.asn.number,asn,,,asn,Autonomous System Number,^[0-9]+$,6185
 port,port,port,services.port,port,port,port,port,port,port,port,port,,Port,"^(?:[1-9]\d{0,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$",53
 ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,IP Address,"^(?:(?:[0-9]{1,3}\.){3}[0-9]{1,3})|(?:[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){7}|[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6}::[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6})$",95.173.136.71
 cidr,net,net,ip,ip,cidr,ip,ip,whois.net.cidr,subnet,,,,CIDR Block,"^(?:(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.){3}(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])(?:\/(?:[1-2][0-9]|3[0-2]|\d))?$|^(?:[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){7}|[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6}::[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6})(?:\/(?:[1-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8]))?$",18.9.47.0/24
 hostname,hostname,hostname,dns.names,,hostname,host,,host,forward,,hostname,domain,Hostname,"^(?=.{1,253}$)[a-zA-Z0-9](?!.*--)[a-zA-Z0-9-]{0,61}[a-zA-Z0-9](\.[a-zA-Z]{2,})+$",www.cisa.gov
 ja3s,ssl.ja3s,,services.tls.ja3s,ssl.server_info.ja3_digest,,,,,,,,,FIX REQD - JA3 Server Signature,^[0-9a-fA-F]{32}$,b4a7811379107e98efecd0824301816d
-org,org,org,,,organization,org,,whois.asn.name,,,as_name,asnname,Autonomous System Org Name,,Vocus Communications
+org,org,org,autonomous_system.organization,,organization,org,,whois.asn.name,,,as_name,asnname,Autonomous System Org Name,,Vocus Communications
 domain,hostname,hostname,dns.names,,site,domain,domain,domain,hostname,,,,Domain Name,"^(?=.{1,253}$)[a-zA-Z0-9](?!.*--)[a-zA-Z0-9-]{0,61}[a-zA-Z0-9](\.[a-zA-Z]{2,})+$",spotify.com
-webserver,freeform,,,web.server,server,server,app,http.headers.server,productvendor,,,server,Web Server,,Cloudflare
+webserver,freeform,,services.http.response.headers.server,web.server,server,server,app,http.headers.server,productvendor,,,server,Web Server,,Cloudflare
 isp,isp,isp,autonomous_system.isp,isp,isp,isp,isp,whois.net.name,geolocus.netname,,isp,,Internet Service Provider,,
 device,http.device_type,,services.software.type,device_type,device,device,,,,,,,Device Type,,
 ssl_cipher,ssl.cipher,,services.tls.cipher_suite,ssl.server_info.ciphers,ssl_cipher,ssl_cipher,,,serial,,,,SSL/TLS Cipher Suite,,
