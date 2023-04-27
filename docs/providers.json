@@ -13,7 +13,7 @@
     },
     {
         "name": "censys",
-        "prefix": "https://search.censys.io/search?resource=hosts&sort=RELEVANCE&q=",
+        "prefix": "https://search.censys.io/search?resource=hosts&sort=RELEVANCE&virtual_hosts=INCLUDE&q=",
         "docs": "https://search.censys.io/search/definitions?resource=hosts",
         "kv_separator": ":",
         "query_separator": " and ",
