@@ -11,3 +11,4 @@ criminalip,https://www.criminalip.io/en/asset/search?query=,https://www.criminal
 criminalip-images,https://www.criminalip.io/en/image/search?query=,https://www.criminalip.io/en/developer/filters-and-tags/filters,: , ,,, -,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/criminalip.png
 shodan-images,https://images.shodan.io/?query=,https://beta.shodan.io/search/filters,:, ,and,or,not,TRUE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/shodan.png
 urlscan,https://urlscan.io/search/#,https://urlscan.io/docs/search/,:, ,AND,OR,NOT,TRUE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/urlscan.png
+hunter,https://hunter.how/list?searchValue=,https://hunter.how/guide,==, and ,&&,or,||,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/urlscan.png

@@ -142,5 +142,17 @@
         "operators/not": "NOT",
         "as_includeprefix": "TRUE",
         "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/urlscan.png"
+    },
+    {
+        "name": "hunter",
+        "prefix": "https://hunter.how/list?searchValue=",
+        "docs": "https://hunter.how/guide",
+        "kv_separator": "==",
+        "query_separator": " and ",
+        "operators/and": "&&",
+        "operators/or": "or",
+        "operators/not": "||",
+        "as_includeprefix": "FALSE",
+        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/hunter.png"
     }
 ]
