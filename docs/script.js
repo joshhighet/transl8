@@ -206,10 +206,12 @@ function createOpenButton(platform, queryText) {
     openButton.classList.add('open-button');
     openButton.textContent = 'open in search engine';
     openButton.addEventListener('click', () => {
-    window.open(`${thisPrefix}${encodeURIComponent(queryText)}`, '_blank');
+        let finalQuery = (platform === 'fofa') ? btoa(queryText) : encodeURIComponent(queryText);
+        window.open(`${thisPrefix}${finalQuery}`, '_blank');
     });
     return openButton;
 }
+
 
 function buildQueries(queriesjson) {
     const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);

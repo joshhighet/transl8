@@ -49,7 +49,7 @@
     },
     {
         "name": "fofa",
-        "prefix": "https://en.fofa.info/result?q=",
+        "prefix": "https://en.fofa.info/result?qbase64=",
         "docs": "https://en.fofa.info/api",
         "kv_separator": "=",
         "query_separator": null,
