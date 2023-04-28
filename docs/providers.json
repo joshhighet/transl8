@@ -40,7 +40,7 @@
         "prefix": "https://www.zoomeye.org/searchResult?q=",
         "docs": "https://www.zoomeye.org/doc?Thechannel=user",
         "kv_separator": ":",
-        "query_separator": null,
+        "query_separator": " AND +",
         "operators/and": "and",
         "operators/or": "or",
         "operators/not": "not",
