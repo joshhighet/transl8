@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+let countries;
+
+async function loadCountries() {
+    const response = await fetch("countries.json");
+    countries = await response.json();
+}
+
+loadCountries();
+
 function populateKeywords(queriesjson, select) {
     for (const keyword of queriesjson) {
         const option = document.createElement('option');
@@ -129,7 +138,12 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
                 asnPrefix = 'AS';
             }
         }
-        const value = asnPrefix + values[i];
+        let value = asnPrefix + values[i];
+        if (platform === 'quake360' && keyword === 'country') {
+            if (countries[value]) {
+                value = countries[value];
+            }
+        }
         if (matchingqueriesjson[platform] === 'freeform') {
             queryText += `"${value}" `;
             continue;
