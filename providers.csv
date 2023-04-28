@@ -3,7 +3,7 @@ shodan,https://www.shodan.io/search?query=,https://beta.shodan.io/search/filters
 censys,https://search.censys.io/search?resource=hosts&sort=RELEVANCE&virtual_hosts=INCLUDE&q=,https://search.censys.io/search/definitions?resource=hosts,:, and ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/censys.png
 binaryedge,https://app.binaryedge.io/services/query?page=1&query=,https://docs.binaryedge.io/search/,:, ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/binaryedge.png
 zoomeye,https://www.zoomeye.org/searchResult?q=,https://www.zoomeye.org/doc?Thechannel=user,:, ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/zoomeye.jpg
-fofa,https://en.fofa.info/result?qbase64=,https://en.fofa.info/api,=, ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/fofa.png
+fofa,https://en.fofa.info/result?qbase64=,https://en.fofa.info/api,=, && ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/fofa.png
 onyphe,https://www.onyphe.io/search?q=,https://www.onyphe.io/docs/onyphe-query-language,:, ,AND,OR,NOT,TRUE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/onyphe.jpg
 quake360,https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=,https://quake.360.net/quake/#/help?id=5eb238f110d2e850d5c6aec8&title=检索关键词,:, ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/unknown.png
 netlas,https://app.netlas.io/responses/?page=1&indices=&q=,https://app.netlas.io/responses/,:, AND ,AND,OR,NOT,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/netlas.png

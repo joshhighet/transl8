@@ -52,7 +52,7 @@
         "prefix": "https://en.fofa.info/result?qbase64=",
         "docs": "https://en.fofa.info/api",
         "kv_separator": "=",
-        "query_separator": null,
+        "query_separator": " && ",
         "operators/and": "and",
         "operators/or": "or",
         "operators/not": "not",
