@@ -39,6 +39,34 @@ function populateKeywords(queriesjson, select) {
         const queryInputDiv = event.target.parentNode;
         const metaDescSpan = queryInputDiv.querySelector('.meta-desc');
         const input = queryInputDiv.querySelector('.query-value');
+        const oldTooltip = queryInputDiv.querySelector('.tooltip');
+        if (oldTooltip) {
+            oldTooltip.remove();
+        }
+        input.addEventListener('input', (e) => {
+            const queryItem = queriesjson.find(item => item.keyword === select.value);
+            const constraint = queryItem ? queryItem.constraint : null;
+            if (constraint) {
+                const regex = new RegExp(constraint);
+                const isValid = regex.test(e.target.value);
+                if (!isValid) {
+                    const oldWarning = queryInputDiv.querySelector('.warning');
+                    if (oldWarning) {
+                        oldWarning.remove();
+                    }
+                    const warning = document.createElement('span');
+                    warning.classList.add('warning');
+                    warning.textContent = `regex field check failed! check you have the right value for ${select.value}".`;
+                    queryInputDiv.appendChild(warning);
+                } else {
+                    const warning = queryInputDiv.querySelector('.warning');
+                    if (warning) {
+                        warning.remove();
+                    }
+                }
+            }
+        });
+        
         if (metaDescSpan) {
             metaDescSpan.textContent = metaDesc;
         } else {
@@ -201,7 +229,6 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
     return queryDiv;
 }
 
-
 function createCopyButton(text) {
     const copyButton = document.createElement('button');
     copyButton.classList.add('copy-button');
@@ -231,7 +258,6 @@ function createOpenButton(platform, queryText) {
     });
     return openButton;
 }
-
 
 function buildQueries(queriesjson) {
     const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
