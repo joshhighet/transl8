@@ -20,3 +20,6 @@ two CSV's define the data presented on the above site. when submitting additiona
 | Netlas          | [app.netlas.io/login/](https://app.netlas.io/login/) | [app.netlas.io/responses/](https://app.netlas.io/responses/) |
 | Onyphe          | [onyphe.io/signin](https://www.onyphe.io/signin) | [onyphe.io/docs](https://www.onyphe.io/docs/onyphe-query-language) | 
 | Criminal IP     | [criminalip.io/en/login](https://www.criminalip.io/en/mypage/information) | [criminalip.io/en/developer](https://www.criminalip.io/en/developer/filters-and-tags/filters) |
+| Hunter          | [hunter.how/profile](https://hunter.how/profile) | [hunter.how/guide](https://hunter.how/guide) |
+| Shodan          | [account.shodan.io/login](https://account.shodan.io/login) | [beta.shodan.io/search/filters](https://beta.shodan.io/search/filters) |
+| BinaryEdge      | [app.binaryedge.io/login](https://app.binaryedge.io/login) | [docs.binaryedge.io/search](https://docs.binaryedge.io/search/) |
