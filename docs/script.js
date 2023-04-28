@@ -143,6 +143,12 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
             if (countries[value]) {
                 value = countries[value];
             }
+            else {
+                unavailable = true;
+                tooltipText = `the country code "${value}" can not be found.`;
+                break;
+            }
+
         }
         if (matchingqueriesjson[platform] === 'freeform') {
             queryText += `"${value}" `;
