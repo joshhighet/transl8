@@ -88,7 +88,7 @@
         "prefix": "https://app.netlas.io/responses/?page=1&indices=&q=",
         "docs": "https://app.netlas.io/responses/",
         "kv_separator": ":",
-        "query_separator": null,
+        "query_separator": " AND ",
         "operators/and": "AND",
         "operators/or": "OR",
         "operators/not": "NOT",
