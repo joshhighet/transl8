@@ -130,6 +130,10 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
             }
         }
         const value = asnPrefix + values[i];
+        if (matchingqueriesjson[platform] === 'freeform') {
+            queryText += `"${value}" `;
+            continue;
+        }
         if (matchingqueriesjson[platform] && value) {
             let queryTermUI = `${matchingqueriesjson[platform]}${kv_separator}"${value}"`;            
             queryText += `${queryTermUI}`;
