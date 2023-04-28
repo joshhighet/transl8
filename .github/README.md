@@ -23,3 +23,4 @@ two CSV's define the data presented on the above site. when submitting additiona
 | Hunter          | [hunter.how/profile](https://hunter.how/profile) | [hunter.how/guide](https://hunter.how/guide) |
 | Shodan          | [account.shodan.io/login](https://account.shodan.io/login) | [beta.shodan.io/search/filters](https://beta.shodan.io/search/filters) |
 | BinaryEdge      | [app.binaryedge.io/login](https://app.binaryedge.io/login) | [docs.binaryedge.io/search](https://docs.binaryedge.io/search/) |
+| urlscan.io      | [urlscan.io/user/login/](https://urlscan.io/user/login) | [urlscan.io/docs/search/](https://urlscan.io/docs/search) |
