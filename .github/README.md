@@ -11,6 +11,8 @@ two CSV's define the data presented on the above site. when submitting additiona
 - [ `queries.csv` ](https://github.com/joshhighet/transl8/blob/main/queries.csv) - the unified query lookup table
 - [ `providers.csv` ](https://github.com/joshhighet/transl8/blob/main/providers.csv) - information on search-providers used such as URL constructors and platform specific operators
 
+[transl8.watchdawg.io/urlgen](http://transl8.watchdawg.io/urlgen) can be useful for spanning various tools without a query language. like the core project in similar fashion - it relies upon changes to [ `urlgen.csv` ](https://github.com/joshhighet/transl8/blob/main/urlgen.csv)
+
 | Platform        | Login Location | Query Documentation |
 |-----------------|----------------|---------------------|
 | ZoomEye         | [zoomeye.org/login](https://www.zoomeye.org/login) | [zoomeye.org/doc](https://www.zoomeye.org/doc?Thechannel=user) |

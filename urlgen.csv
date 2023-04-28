@@ -1,0 +1,41 @@
+category,provider,Search string
+ip,Abuse IPDB,https://www.abuseipdb.com/check/%s
+ip,Shodan,https://www.shodan.io/host/%s
+ip,SecurityTrails,https://securitytrails.com/list/ip/%s
+ip,VirusTotal,https://www.virustotal.com/gui/ip-address/%s
+ip,urlscan.io,https://urlscan.io/search/#%s
+ip,X-Force Exchange,https://exchange.xforce.ibmcloud.com/ip/%s
+ip,Greynoise,https://viz.greynoise.io/ip/%s
+ip,I Know What You Download,https://iknowwhatyoudownload.com/en/peer/?ip=%s
+ip,VirusTotal Graph,https://www.virustotal.com/graph/%s
+ip,PTR Lookup,https://www.whatsmydns.net/dns-lookup/ptr-records?server=google&query=%s
+domain,VirusTotal,https://www.virustotal.com/graph/%s
+domain,crt.sh Certificate Transparency,https://crt.sh/?q=%s
+domain,MX Toolbox Blacklist,https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a%s&run=toolpage
+domain,Email Format,https://www.email-format.com/d/%s/
+domain,SecurityTrails,https://securitytrails.com/domain/%s/dns
+domain,BuiltWith,https://builtwith.com/%s
+domain,VirusTotal,https://www.virustotal.com/gui/domain/%s
+domain,urlscan.io,https://urlscan.io/search/#%s
+domain,dnsmap.io,https://dnsmap.io/#A/%s
+domain,SimilarWeb,https://www.similarweb.com/website/%s/
+domain,X-Force Exchange,https://exchange.xforce.ibmcloud.com/url/%s
+domain,Whoisology,https://whoisology.com/%s
+domain,SecurityHeaders,https://securityheaders.com/?followRedirects=on&q=%s
+domain,Wappalyzer,https://www.wappalyzer.com/lookup/%s/
+domain,WhatCMS,https://whatcms.org/?s=%s
+domain,dnsspy.io,https://dnsspy.io/scan/%s
+domain,DNSViz,https://dnsviz.net/d/%s/dnssec/
+domain,Mozilla Observatory,https://observatory.mozilla.org/analyze/%s
+domain,hunter.io,https://hunter.io/try/search/%s
+domain,Is it Down for Everyone,https://downforeveryoneorjustme.com/%s
+domain,Instant Domain Search,https://instantdomainsearch.com/domain/extensions?q=%s
+string,GrayHat Warfare,https://buckets.grayhatwarfare.com/files?keywords=%s
+string,GitHub Code,https://github.com/search?type=code&q=%s
+string,Twitter,https://twitter.com/search?q=%s
+string,grep.app Code,https://grep.app/search?q=%s
+string,Google,https://www.google.co.nz/search?q=%s
+string,Google Trends,https://trends.google.com/trends/explore?date=now%201-d&geo=NZ&hl=en-GB&q=%s
+string,LinkedIn Post,https://www.linkedin.com/search/results/content/?keywords=%s
+email,Whoisology,https://whoisology.com/%s
+bitcoin,Bitcoin Abuse,https://www.bitcoinabuse.com/reports/%s

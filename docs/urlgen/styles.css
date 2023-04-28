@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    background: linear-gradient(to right, #007BFF, #0056b3); /* change this line */
+}
+
+a.button:hover {
+    background: linear-gradient(to right, #0056b3, #003380); /* change this line */
+}
+
+body {
+    background: linear-gradient(135deg, #046bfc 10%, #bd54e9 100%);
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    padding: 20px;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: #fff;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+select:focus, input:focus {
+    box-shadow: 0px 0px 5px rgba(81, 81, 229, 1);
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #5151E5;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: 0.3s;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    transform: scale(0.98);
+}
+
+#urlButtons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+}
+
+#urlButtons button {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+#urlButtons button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#category {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#category input[type="radio"] {
+    display: none;
+}
+
+#category label {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#category input[type="radio"]:checked + label {
+    background: rgba(0, 0, 0, 0.2);
+}

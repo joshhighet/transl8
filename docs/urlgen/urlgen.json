@@ -1,0 +1,202 @@
+[
+    {
+        "category": "ip",
+        "provider": "Abuse IPDB",
+        "Search string": "https://www.abuseipdb.com/check/%s"
+    },
+    {
+        "category": "ip",
+        "provider": "Shodan",
+        "Search string": "https://www.shodan.io/host/%s"
+    },
+    {
+        "category": "ip",
+        "provider": "SecurityTrails",
+        "Search string": "https://securitytrails.com/list/ip/%s"
+    },
+    {
+        "category": "ip",
+        "provider": "VirusTotal",
+        "Search string": "https://www.virustotal.com/gui/ip-address/%s"
+    },
+    {
+        "category": "ip",
+        "provider": "urlscan.io",
+        "Search string": "https://urlscan.io/search/#%s"
+    },
+    {
+        "category": "ip",
+        "provider": "X-Force Exchange",
+        "Search string": "https://exchange.xforce.ibmcloud.com/ip/%s"
+    },
+    {
+        "category": "ip",
+        "provider": "Greynoise",
+        "Search string": "https://viz.greynoise.io/ip/%s"
+    },
+    {
+        "category": "ip",
+        "provider": "I Know What You Download",
+        "Search string": "https://iknowwhatyoudownload.com/en/peer/?ip=%s"
+    },
+    {
+        "category": "ip",
+        "provider": "VirusTotal Graph",
+        "Search string": "https://www.virustotal.com/graph/%s"
+    },
+    {
+        "category": "ip",
+        "provider": "PTR Lookup",
+        "Search string": "https://www.whatsmydns.net/dns-lookup/ptr-records?server=google&query=%s"
+    },
+    {
+        "category": "domain",
+        "provider": "VirusTotal",
+        "Search string": "https://www.virustotal.com/graph/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "crt.sh Certificate Transparency",
+        "Search string": "https://crt.sh/?q=%s"
+    },
+    {
+        "category": "domain",
+        "provider": "MX Toolbox Blacklist",
+        "Search string": "https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a%s&run=toolpage"
+    },
+    {
+        "category": "domain",
+        "provider": "Email Format",
+        "Search string": "https://www.email-format.com/d/%s/"
+    },
+    {
+        "category": "domain",
+        "provider": "SecurityTrails",
+        "Search string": "https://securitytrails.com/domain/%s/dns"
+    },
+    {
+        "category": "domain",
+        "provider": "BuiltWith",
+        "Search string": "https://builtwith.com/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "VirusTotal",
+        "Search string": "https://www.virustotal.com/gui/domain/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "urlscan.io",
+        "Search string": "https://urlscan.io/search/#%s"
+    },
+    {
+        "category": "domain",
+        "provider": "dnsmap.io",
+        "Search string": "https://dnsmap.io/#A/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "SimilarWeb",
+        "Search string": "https://www.similarweb.com/website/%s/"
+    },
+    {
+        "category": "domain",
+        "provider": "X-Force Exchange",
+        "Search string": "https://exchange.xforce.ibmcloud.com/url/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "Whoisology",
+        "Search string": "https://whoisology.com/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "SecurityHeaders",
+        "Search string": "https://securityheaders.com/?followRedirects=on&q=%s"
+    },
+    {
+        "category": "domain",
+        "provider": "Wappalyzer",
+        "Search string": "https://www.wappalyzer.com/lookup/%s/"
+    },
+    {
+        "category": "domain",
+        "provider": "WhatCMS",
+        "Search string": "https://whatcms.org/?s=%s"
+    },
+    {
+        "category": "domain",
+        "provider": "dnsspy.io",
+        "Search string": "https://dnsspy.io/scan/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "DNSViz",
+        "Search string": "https://dnsviz.net/d/%s/dnssec/"
+    },
+    {
+        "category": "domain",
+        "provider": "Mozilla Observatory",
+        "Search string": "https://observatory.mozilla.org/analyze/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "hunter.io",
+        "Search string": "https://hunter.io/try/search/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "Is it Down for Everyone",
+        "Search string": "https://downforeveryoneorjustme.com/%s"
+    },
+    {
+        "category": "domain",
+        "provider": "Instant Domain Search",
+        "Search string": "https://instantdomainsearch.com/domain/extensions?q=%s"
+    },
+    {
+        "category": "string",
+        "provider": "GrayHat Warfare",
+        "Search string": "https://buckets.grayhatwarfare.com/files?keywords=%s"
+    },
+    {
+        "category": "string",
+        "provider": "GitHub Code",
+        "Search string": "https://github.com/search?type=code&q=%s"
+    },
+    {
+        "category": "string",
+        "provider": "Twitter",
+        "Search string": "https://twitter.com/search?q=%s"
+    },
+    {
+        "category": "string",
+        "provider": "grep.app Code",
+        "Search string": "https://grep.app/search?q=%s"
+    },
+    {
+        "category": "string",
+        "provider": "Google",
+        "Search string": "https://www.google.co.nz/search?q=%s"
+    },
+    {
+        "category": "string",
+        "provider": "Google Trends",
+        "Search string": "https://trends.google.com/trends/explore?date=now%201-d&geo=NZ&hl=en-GB&q=%s"
+    },
+    {
+        "category": "string",
+        "provider": "LinkedIn Post",
+        "Search string": "https://www.linkedin.com/search/results/content/?keywords=%s"
+    },
+    {
+        "category": "email",
+        "provider": "Whoisology",
+        "Search string": "https://whoisology.com/%s"
+    },
+    {
+        "category": "bitcoin",
+        "provider": "Bitcoin Abuse",
+        "Search string": "https://www.bitcoinabuse.com/reports/%s"
+    }
+]
