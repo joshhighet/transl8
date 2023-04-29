@@ -154,5 +154,17 @@
         "operators/not": "||",
         "as_includeprefix": "FALSE",
         "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/hunter.png"
+    },
+    {
+        "name": "fullhunt",
+        "prefix": "https://fullhunt.io/search?query=",
+        "docs": "https://fullhunt.io/docs/search/filters/",
+        "kv_separator": ":",
+        "query_separator": null,
+        "operators/and": null,
+        "operators/or": null,
+        "operators/not": null,
+        "as_includeprefix": "FALSE",
+        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/fullhunt.jpg"
     }
 ]
