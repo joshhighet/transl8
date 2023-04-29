@@ -19,9 +19,6 @@ jobs:
       - name: generate queries.json
         run: |
           python3 docs/csv2json.py queries.csv docs/queries.json
-      - name: generate urlgen/urlgen.json
-        run: |
-          python3 docs/csv2json.py urlgen.csv docs/urlgen/urlgen.json
       - name: save changes
         run: |
           git config user.name github-actions
