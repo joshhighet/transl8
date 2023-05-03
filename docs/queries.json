@@ -16,7 +16,7 @@
         "urlscan": null,
         "hunter": "tls-jarm.hash",
         "description": "62 byte Fingerprint",
-        "constraint": "^([a-fA-F0-9]{2}-){9}[a-fA-F0-9]{2}$",
+        "constraint": "^[A-Z0-9]{62}$",
         "example": "07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1"
     },
     {
