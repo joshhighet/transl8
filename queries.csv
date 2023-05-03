@@ -1,5 +1,5 @@
 keyword,shodan,shodan-images,censys,binaryedge,zoomeye,fullhunt,fofa,quake360,netlas,onyphe,criminalip-images,criminalip,urlscan,hunter,description,constraint,example
-jarm,ssl.jarm,,services.jarm.fingerprint,jarm.jarm_hash,jarm,,jarm,,jarm,,,jarm,,tls-jarm.hash,62 byte Fingerprint,^([a-fA-F0-9]{2}-){9}[a-fA-F0-9]{2}$,07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1
+jarm,ssl.jarm,,services.jarm.fingerprint,jarm.jarm_hash,jarm,,jarm,,jarm,,,jarm,,tls-jarm.hash,62 byte Fingerprint,^[A-Z0-9]{62}$,07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1
 favicon-mmh3,http.favicon.hash,,,,iconhash,,icon_hash,,,,,favicon,,,Favicon MurmurHash,^[0-9a-fA-F]{8}$,1456990795
 favicon-sha256,,,,,,,,,http.favicon.hash.hash_sha256,,,,,,Favicon SHA256 Hash,^[a-fA-F0-9]{64}$,6da5620880159634213e197fafca1dde0272153be3e4590818533fab8d040770
 favicon-md5,,,services.http.response.favicons.md5_hash,web.favicon.md5,,http.favicon_hash,,,,,,,,favicon_hash,Favicon MD5 Hash,^[a-fA-F0-9]{32}$,f3418a443e7d841097c714d69ec4bcb8
