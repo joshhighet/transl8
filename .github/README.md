@@ -1,7 +1,5 @@
 ## transl8
 
-_transl8 is a work-in-progress under active development_
-
 transl8 helps build simple cross-platform queries for various internet search engines
 
 this repository is used to generate the frontend, [transl8.watchdawg.io](https://transl8.watchdawg.io)
