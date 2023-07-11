@@ -11,7 +11,7 @@ http-mmh3,http.html_hash,,,web.body.sha256,,,,,,,,,,,HTTP Response Body MurmurHa
 http-md5,,,,,,,,,,app.http.bodymd5,,,,,HTTP Response Body MD5 Hash,^[a-fA-F0-9]{32}$,fb980452a875a8cdc6cd8a9ea7d3f4e6
 http-sha1,,,services.http.response.body_hashes,,,,,,,,,,,,HTTP Response Body SHA1 Hash,^[a-fA-F0-9]{40}$,b5e2a9fb1f8a4aad3c7127c769af4c780b47bef4
 http-sha256,,,services.http.response.body_hashes,,,,,,http.body_sha256,,,,hash,,HTTP Response Body SHA256 Hash,^[a-fA-F0-9]{64}$,446a6087825fa73eadb045e5a2e9e2adf7df241b571228187728191d961dda1f
-http-responsecode,,,services.http.response.status_code,,,http.status_code,,,,,,status_code,page.status,"header.status_code==""402""",,^(1\d{2}|2\d{2}|3\d{2}|4\d{2}|5\d{2})$,
+http-responsecode,,,services.http.response.status_code,,,http.status_code,,,,,,status_code,page.status,header.status_code,HTTP Response Code,^(1\d{2}|2\d{2}|3\d{2}|4\d{2}|5\d{2})$,
 asn,asn,asn,autonomous_system.asn,asn,asn,asn,asn,asn,whois.asn.number,asn,,,asn,as.number,Autonomous System Number,^[0-9]+$,6185
 port,port,port,services.port,port,port,port,port,port,port,port,port,port,,ip.port,Port,"^(?:[1-9]\d{0,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$",53
 ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,ip,IP Address,"^(?:(?:[0-9]{1,3}\.){3}[0-9]{1,3})|(?:[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){7}|[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6}::[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){0,6})$",95.173.136.71
