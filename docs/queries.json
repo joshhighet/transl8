@@ -254,8 +254,8 @@
         "criminalip-images": null,
         "criminalip": "status_code",
         "urlscan": "page.status",
-        "hunter": "header.status_code==\"402\"",
-        "description": null,
+        "hunter": "header.status_code",
+        "description": "HTTP Response Code",
         "constraint": "^(1\\d{2}|2\\d{2}|3\\d{2}|4\\d{2}|5\\d{2})$",
         "example": null
     },
