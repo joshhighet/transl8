@@ -1,6 +1,6 @@
 ## transl8
 
-transl8 helps build simple cross-platform queries for various internet search engines
+transl8 can help build cross-platform queries for various internet search engines.
 
 this repository is used to generate the frontend, [transl8.watchdawg.io](https://transl8.watchdawg.io)
 
@@ -8,8 +8,6 @@ two CSV's define the data presented on the above site. when submitting additiona
 
 - [ `queries.csv` ](https://github.com/joshhighet/transl8/blob/main/queries.csv) - the unified query lookup table
 - [ `providers.csv` ](https://github.com/joshhighet/transl8/blob/main/providers.csv) - information on search-providers used such as URL constructors and platform specific operators
-
-[transl8.watchdawg.io/urlgen](http://transl8.watchdawg.io/urlgen) can be useful for spanning various tools without a query language. like the core project in similar fashion - it relies upon changes to [ `urlgen.csv` ](https://github.com/joshhighet/transl8/blob/main/urlgen.csv)
 
 | Platform        | Login Location | Query Documentation |
 |-----------------|----------------|---------------------|
