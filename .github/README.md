@@ -1,6 +1,8 @@
 ## transl8
 
-transl8 helps build cross-platform queries for various internet search engines, available at [transl8.watchdawg.io](https://transl8.watchdawg.io)
+transl8 is a syntax translator and query generator for network search engines. it can help compile cross-platform queries for various global network scan data providers.
+
+the web service is available at [transl8.watchdawg.io](https://transl8.watchdawg.io)
 
 there are two CSV's which define the data presented on the above site;
 
