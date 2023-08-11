@@ -25,4 +25,5 @@ isp,isp,isp,autonomous_system.isp,isp,isp,,isp,isp,whois.net.name,geolocus.netna
 device,http.device_type,,services.software.type,device_type,device,,device,,,,,,,product.name,Device Type,,
 ssl_cipher,ssl.cipher,,services.tls.cipher_suite,ssl.server_info.ciphers,ssl_cipher,,ssl_cipher,,,serial,,,,,SSL/TLS Cipher Suite,,
 content_type,http.content_type,,services.http.response.content_type,web.headers.content_type,content_type,,content_type,,http.headers.content_type,,,,,,HTTP Content Type,,
-ocrstring,,freeform,,,,,,img_ocr,,,freeform,,,,String within OCR Content,All your files have been encrypted,
+ocrstring,,freeform,,,,,,img_ocr,,,freeform,,,,String within OCR Content,,All your files have been encrypted
+cve,vuln,,,,,,,,cve.name,cve,,cve_id,,,,^CVE-\d{4}-\d+$,CVE-2021-44228

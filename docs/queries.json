@@ -536,7 +536,27 @@
         "urlscan": null,
         "hunter": null,
         "description": "String within OCR Content",
-        "constraint": "All your files have been encrypted",
-        "example": null
+        "constraint": null,
+        "example": "All your files have been encrypted"
+    },
+    {
+        "keyword": "cve",
+        "shodan": "vuln",
+        "shodan-images": null,
+        "censys": null,
+        "binaryedge": null,
+        "zoomeye": null,
+        "fullhunt": null,
+        "fofa": null,
+        "quake360": null,
+        "netlas": "cve.name",
+        "onyphe": "cve",
+        "criminalip-images": null,
+        "criminalip": "cve_id",
+        "urlscan": null,
+        "hunter": null,
+        "description": null,
+        "constraint": "^CVE-\\d{4}-\\d+$",
+        "example": "CVE-2021-44228"
     }
 ]
