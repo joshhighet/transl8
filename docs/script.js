@@ -9,7 +9,7 @@ async function fetchData(url) {
         return await response.json();
     } catch (error) {
         console.error(`failed fetching data from ${url}:`, error);
-        throw error;
+        return null;
     }
 }
 
@@ -20,7 +20,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             fetchData('providers.json'),
             fetchData('countries.json')
         ]);
+        if (!providerData) {
+            console.error("providers.json could not be loaded");
+            return;
+        }
         window.COUNTRIES = countriesData;
+        //console.log("setting providers value:", providerData);
         providers = providerData;
         setupForm(queries, providers);
     } catch (error) {
@@ -139,6 +144,7 @@ function addKeywordInput(queries) {
 }
 
 function createQueryDiv(platform, queriesjson, keywords, values, providers) {
+    //console.log("entering createQueryDiv with providers:", providers);
     if (!providers || providers.length === 0) {
         console.error("providers data not yet loaded");
         return;
