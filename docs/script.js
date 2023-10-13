@@ -1,32 +1,44 @@
-document.addEventListener('DOMContentLoaded', () => {
-    Promise.all([
-        fetch('queries.json').then(response => response.json()),
-        fetch('providers.json').then(response => response.json())
-    ]).then(([queriesqueriesjson, providersqueriesjson]) => {
-        setupForm(queriesqueriesjson, providersqueriesjson);
-    });
-});
+let providers = [];
 
-let countries;
-
-async function loadCountries() {
-    const response = await fetch("countries.json");
-    countries = await response.json();
+async function fetchData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`failed to fetch ${url}: ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`failed fetching data from ${url}:`, error);
+        throw error;
+    }
 }
 
-loadCountries();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const [queries, providerData, countriesData] = await Promise.all([
+            fetchData('queries.json'),
+            fetchData('providers.json'),
+            fetchData('countries.json')
+        ]);
+        window.COUNTRIES = countriesData;
+        providers = providerData;
+        setupForm(queries, providers);
+    } catch (error) {
+        console.error("failed initializing app:", error);
+    }
+});
 
-function populateKeywords(queriesjson, select) {
-    for (const keyword of queriesjson) {
+function populateKeywords(queries, select) {
+    for (const keyword of queries) {
         const option = document.createElement('option');
         option.value = keyword.keyword;
         option.textContent = keyword.keyword;
         select.appendChild(option);
         if (keyword.description) {
-            option.setAttribute('queriesjson-meta-desc', keyword.description);
+            option.setAttribute('data-desc', keyword.description);
         }
         if (keyword.example) {
-            option.setAttribute('queriesjson-example', keyword.example);
+            option.setAttribute('data-example', keyword.example);
         }
         if (keyword.keyword === 'ip') {
             option.selected = true;
@@ -34,17 +46,13 @@ function populateKeywords(queriesjson, select) {
     }
     select.addEventListener('change', (event) => {
         const selectedOption = event.target.selectedOptions[0];
-        const metaDesc = selectedOption.getAttribute('queriesjson-meta-desc');
-        const example = selectedOption.getAttribute('queriesjson-example');
+        const metaDesc = selectedOption.getAttribute('data-desc');
+        const example = selectedOption.getAttribute('data-example');
         const queryInputDiv = event.target.parentNode;
         const metaDescSpan = queryInputDiv.querySelector('.meta-desc');
         const input = queryInputDiv.querySelector('.query-value');
-        const oldTooltip = queryInputDiv.querySelector('.tooltip');
-        if (oldTooltip) {
-            oldTooltip.remove();
-        }
         input.addEventListener('input', (e) => {
-            const queryItem = queriesjson.find(item => item.keyword === select.value);
+            const queryItem = queries.find(item => item.keyword === select.value);
             const constraint = queryItem ? queryItem.constraint : null;
             if (constraint) {
                 const regex = new RegExp(constraint);
@@ -56,7 +64,7 @@ function populateKeywords(queriesjson, select) {
                     }
                     const warning = document.createElement('span');
                     warning.classList.add('warning');
-                    warning.textContent = `regex field check failed! check you have the right value for ${select.value}".`;
+                    warning.textContent = `Regex field check failed! Ensure you have the right value for ${select.value}.`;
                     queryInputDiv.appendChild(warning);
                 } else {
                     const warning = queryInputDiv.querySelector('.warning');
@@ -66,7 +74,6 @@ function populateKeywords(queriesjson, select) {
                 }
             }
         });
-        
         if (metaDescSpan) {
             metaDescSpan.textContent = metaDesc;
         } else {
@@ -80,34 +87,34 @@ function populateKeywords(queriesjson, select) {
         if (example) {
             input.placeholder = example;
         } else {
-            input.placeholder = 'enter value';
+            input.placeholder = 'Enter value';
         }
-        buildQueries(queriesjson);
+        buildQueries(queries);
     });
 }
 
-function setupForm(queriesjson, providers) {
-    addKeywordInput(queriesjson);
+function setupForm(queries, providers) {
+    addKeywordInput(queries);
     const addButton = document.getElementById('add-query');
-    addButton.addEventListener('click', () => addKeywordInput(queriesjson));
+    addButton.addEventListener('click', () => addKeywordInput(queries));
 }
 
-function addKeywordInput(queriesjson) {
+function addKeywordInput(queries) {
     const keywordDiv = document.createElement('div');
     keywordDiv.classList.add('keyword-input');
     const select = document.createElement('select');
     select.classList.add('query-keyword');
-    populateKeywords(queriesjson, select);
-    select.addEventListener('change', () => buildQueries(queriesjson));
+    populateKeywords(queries, select);
+    select.addEventListener('change', () => buildQueries(queries));
     const input = document.createElement('input');
     input.type = 'text';
     input.classList.add('query-value');
-    const matchingqueriesjson = queriesjson.find(item => item.keyword === select.value);
-    const example = matchingqueriesjson.example;
+    const matchingQuery = queries.find(item => item.keyword === select.value);
+    const example = matchingQuery.example;
     input.placeholder = example ? example : 'enter value';
-    select.options[select.selectedIndex].setAttribute('queriesjson-meta-desc', matchingqueriesjson.description);
-    select.options[select.selectedIndex].setAttribute('queriesjson-example', example);
-    input.addEventListener('input', () => buildQueries(queriesjson));
+    select.options[select.selectedIndex].setAttribute('data-desc', matchingQuery.description);
+    select.options[select.selectedIndex].setAttribute('data-example', example);
+    input.addEventListener('input', () => buildQueries(queries));
     keywordDiv.appendChild(select);
     keywordDiv.appendChild(input);
     const removeButton = document.createElement('button');
@@ -115,34 +122,27 @@ function addKeywordInput(queriesjson) {
     removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
     removeButton.addEventListener('click', () => {
         keywordDiv.remove();
-        buildQueries(queriesjson);
-        const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
-        const values = Array.from(document.querySelectorAll('.query-value')).map(element => element.value);
+        buildQueries(queries);
     });
     keywordDiv.appendChild(removeButton);
     const metaDescSpan = document.createElement('span');
     metaDescSpan.classList.add('meta-desc');
     metaDescSpan.style.fontStyle = 'italic';
     metaDescSpan.style.marginTop = '5px';
-    metaDescSpan.textContent = matchingqueriesjson.description;
+    metaDescSpan.textContent = matchingQuery.description;
     keywordDiv.appendChild(metaDescSpan);
     const queryInputs = document.getElementById('query-inputs');
     queryInputs.appendChild(keywordDiv);
     const event = new Event('change');
     select.dispatchEvent(event);
-    buildQueries(queriesjson);
+    buildQueries(queries);
 }
-
-let providers;
-
-async function loadProviders() {
-  const response = await fetch("providers.json");
-  providers = await response.json();
-}
-
-loadProviders();
 
 function createQueryDiv(platform, queriesjson, keywords, values, providers) {
+    if (!providers || providers.length === 0) {
+        console.error("providers data not yet loaded");
+        return;
+    }    
     const provider = providers.find(provider => provider.name === platform);
     const providerDocsURI = provider.docs;
     const kv_separator = provider.kv_separator;
@@ -176,7 +176,6 @@ function createQueryDiv(platform, queriesjson, keywords, values, providers) {
                 tooltipText = `the country code "${value}" can not be found.`;
                 break;
             }
-
         }
         if (matchingqueriesjson[platform] === 'freeform') {
             queryText += `"${value}" `;
