@@ -1,278 +1,258 @@
 let providers = [];
+let queries = [];
+let countries = {};
+let debounceTimer;
 
 async function fetchData(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`failed to fetch ${url}: ${response.statusText}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error(`failed fetching data from ${url}:`, error);
-        return null;
-    }
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch ${url}`);
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching ${url}:`, error);
+    return null;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const [queries, providerData, countriesData] = await Promise.all([
-            fetchData('queries.json'),
-            fetchData('providers.json'),
-            fetchData('countries.json')
-        ]);
-        if (!providerData) {
-            console.error("providers.json could not be loaded");
-            return;
-        }
-        window.COUNTRIES = countriesData;
-        //console.log("setting providers value:", providerData);
-        providers = providerData;
-        setupForm(queries, providers);
-    } catch (error) {
-        console.error("failed initializing app:", error);
-    }
+  [queries, providers, countries] = await Promise.all([
+    fetchData('queries.json'),
+    fetchData('providers.json'),
+    fetchData('countries.json')
+  ]);
+  if (!providers || !queries) return console.error('Data loading failed');
+
+  window.COUNTRIES = countries;
+  setupForm(queries, providers);
+  document.getElementById('add-query').addEventListener('click', () => addKeywordInput(queries));
+  document.getElementById('share-link').addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Share link copied!');
+  });
 });
 
-function populateKeywords(queries, select) {
-    for (const keyword of queries) {
-        const option = document.createElement('option');
-        option.value = keyword.keyword;
-        option.textContent = keyword.keyword;
-        select.appendChild(option);
-        if (keyword.description) {
-            option.setAttribute('data-desc', keyword.description);
-        }
-        if (keyword.example) {
-            option.setAttribute('data-example', keyword.example);
-        }
-        if (keyword.keyword === 'ip') {
-            option.selected = true;
-        }
-    }
-    select.addEventListener('change', (event) => {
-        const selectedOption = event.target.selectedOptions[0];
-        const metaDesc = selectedOption.getAttribute('data-desc');
-        const example = selectedOption.getAttribute('data-example');
-        const queryInputDiv = event.target.parentNode;
-        const metaDescSpan = queryInputDiv.querySelector('.meta-desc');
-        const input = queryInputDiv.querySelector('.query-value');
-        input.addEventListener('input', (e) => {
-            const queryItem = queries.find(item => item.keyword === select.value);
-            const constraint = queryItem ? queryItem.constraint : null;
-            if (constraint) {
-                const regex = new RegExp(constraint);
-                const isValid = regex.test(e.target.value);
-                if (!isValid) {
-                    const oldWarning = queryInputDiv.querySelector('.warning');
-                    if (oldWarning) {
-                        oldWarning.remove();
-                    }
-                    const warning = document.createElement('span');
-                    warning.classList.add('warning');
-                    warning.textContent = `Regex field check failed! Ensure you have the right value for ${select.value}.`;
-                    queryInputDiv.appendChild(warning);
-                } else {
-                    const warning = queryInputDiv.querySelector('.warning');
-                    if (warning) {
-                        warning.remove();
-                    }
-                }
-            }
-        });
-        if (metaDescSpan) {
-            metaDescSpan.textContent = metaDesc;
-        } else {
-            const newMetaDescSpan = document.createElement('span');
-            newMetaDescSpan.classList.add('meta-desc');
-            newMetaDescSpan.style.fontStyle = 'italic';
-            newMetaDescSpan.style.marginTop = '5px';
-            newMetaDescSpan.textContent = metaDesc;
-            queryInputDiv.appendChild(newMetaDescSpan);
-        }
-        if (example) {
-            input.placeholder = example;
-        } else {
-            input.placeholder = 'Enter value';
-        }
-        buildQueries(queries);
-    });
-}
-
 function setupForm(queries, providers) {
+  const params = new URLSearchParams(window.location.search);
+  const keywords = params.getAll('keywords[]');
+  const values = params.getAll('values[]');
+  const operators = params.getAll('operators[]');
+  if (keywords.length) {
+    keywords.forEach((kw, i) => {
+      addKeywordInput(queries, operators[i] || 'and');
+      const div = document.querySelectorAll('.keyword-input')[i];
+      div.querySelector('.query-keyword').value = kw;
+      div.querySelector('.query-value').value = values[i] || '';
+      div.querySelector('.query-keyword').dispatchEvent(new Event('change'));
+    });
+  } else {
     addKeywordInput(queries);
-    const addButton = document.getElementById('add-query');
-    addButton.addEventListener('click', () => addKeywordInput(queries));
+  }
+  buildQueries(queries, providers);
 }
 
-function addKeywordInput(queries) {
-    const keywordDiv = document.createElement('div');
-    keywordDiv.classList.add('keyword-input');
-    const select = document.createElement('select');
-    select.classList.add('query-keyword');
-    populateKeywords(queries, select);
-    select.addEventListener('change', () => buildQueries(queries));
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.classList.add('query-value');
-    const matchingQuery = queries.find(item => item.keyword === select.value);
-    const example = matchingQuery.example;
-    input.placeholder = example ? example : 'enter value';
-    select.options[select.selectedIndex].setAttribute('data-desc', matchingQuery.description);
-    select.options[select.selectedIndex].setAttribute('data-example', example);
-    input.addEventListener('input', () => buildQueries(queries));
-    keywordDiv.appendChild(select);
-    keywordDiv.appendChild(input);
-    const removeButton = document.createElement('button');
-    removeButton.classList.add('remove-button');
-    removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
-    removeButton.addEventListener('click', () => {
-        keywordDiv.remove();
-        buildQueries(queries);
+function populateKeywords(queries, select) {
+  queries.forEach(query => {
+    const option = document.createElement('option');
+    option.value = query.keyword;
+    option.textContent = query.keyword;
+    select.appendChild(option);
+    if (query.description) option.dataset.desc = query.description;
+    if (query.example) option.dataset.example = query.example;
+    if (query.keyword === 'ip') option.selected = true;
+  });
+}
+
+function addKeywordInput(queries, operator = 'and') {
+  const keywordDiv = document.createElement('div');
+  keywordDiv.classList.add('keyword-input', 'flex', 'items-center', 'space-x-2');
+
+  // Operator select (after first input)
+  const inputs = document.querySelectorAll('.keyword-input');
+  if (inputs.length > 0) {
+    const opSelect = document.createElement('select');
+    opSelect.classList.add('query-operator', 'flex', 'h-10', 'w-full', 'rounded-md', 'border', 'border-input', 'bg-background', 'px-3', 'py-2', 'text-sm', 'ring-offset-background', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:cursor-not-allowed', 'disabled:opacity-50');
+    ['and', 'or', 'not'].forEach(op => {
+      const opt = document.createElement('option');
+      opt.value = op;
+      opt.textContent = op.toUpperCase();
+      if (op === operator) opt.selected = true;
+      opSelect.appendChild(opt);
     });
-    keywordDiv.appendChild(removeButton);
-    const metaDescSpan = document.createElement('span');
-    metaDescSpan.classList.add('meta-desc');
-    metaDescSpan.style.fontStyle = 'italic';
-    metaDescSpan.style.marginTop = '5px';
-    metaDescSpan.textContent = matchingQuery.description;
-    keywordDiv.appendChild(metaDescSpan);
-    const queryInputs = document.getElementById('query-inputs');
-    queryInputs.appendChild(keywordDiv);
-    const event = new Event('change');
-    select.dispatchEvent(event);
-    buildQueries(queries);
+    opSelect.addEventListener('change', () => debounceBuild(queries, providers));
+    keywordDiv.appendChild(opSelect);
+  }
+
+  const select = document.createElement('select');
+  select.classList.add('query-keyword', 'flex', 'h-10', 'w-full', 'rounded-md', 'border', 'border-input', 'bg-background', 'px-3', 'py-2', 'text-sm', 'ring-offset-background', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:cursor-not-allowed', 'disabled:opacity-50');
+  populateKeywords(queries, select);
+  select.addEventListener('change', (e) => {
+    const selected = e.target.selectedOptions[0];
+    const input = keywordDiv.querySelector('.query-value');
+    input.placeholder = selected.dataset.example || 'Enter value';
+    updateMetaDesc(keywordDiv, selected.dataset.desc);
+    debounceBuild(queries, providers);
+  });
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.classList.add('query-value', 'flex', 'h-10', 'w-full', 'rounded-md', 'border', 'border-input', 'bg-background', 'px-3', 'py-2', 'text-sm', 'ring-offset-background', 'placeholder:text-muted-foreground', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:cursor-not-allowed', 'disabled:opacity-50');
+  input.addEventListener('input', (e) => {
+    validateInput(keywordDiv, queries.find(q => q.keyword === select.value), e.target.value);
+    debounceBuild(queries, providers);
+  });
+
+  const removeBtn = document.createElement('button');
+  removeBtn.classList.add('inline-flex', 'items-center', 'justify-center', 'whitespace-nowrap', 'rounded-md', 'text-sm', 'font-medium', 'ring-offset-background', 'transition-colors', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:pointer-events-none', 'disabled:opacity-50', 'bg-destructive', 'text-destructive-foreground', 'hover:bg-destructive/90', 'h-10', 'px-4', 'py-2');
+  removeBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+  removeBtn.addEventListener('click', () => {
+    keywordDiv.remove();
+    debounceBuild(queries, providers);
+  });
+
+  keywordDiv.appendChild(select);
+  keywordDiv.appendChild(input);
+  keywordDiv.appendChild(removeBtn);
+
+  const metaDiv = document.createElement('div');
+  metaDiv.classList.add('tooltip', 'ml-2');
+  const metaSpan = document.createElement('span');
+  metaSpan.classList.add('tooltip-content');
+  metaDiv.appendChild(metaSpan);
+  keywordDiv.appendChild(metaDiv);
+
+  document.getElementById('query-inputs').appendChild(keywordDiv);
+  select.dispatchEvent(new Event('change'));
 }
 
-function createQueryDiv(platform, queriesjson, keywords, values, providers) {
-    //console.log("entering createQueryDiv with providers:", providers);
-    if (!providers || providers.length === 0) {
-        console.error("providers data not yet loaded");
-        return;
-    }    
-    const provider = providers.find(provider => provider.name === platform);
-    const providerDocsURI = provider.docs;
-    const kv_separator = provider.kv_separator;
-    const queryDiv = document.createElement('div');
-    queryDiv.classList.add('query');
-    const providerlogouri = provider.png_uri;
-    queryDiv.innerHTML = `
-      <div class="provider-header">
-        <h3>${platform}</h3>
-      </div>`;
-    let queryText = '';
-    let unavailable = false;
-    let tooltipText = '';
-    for (let i = 0; i < keywords.length; i++) {
-        const keyword = keywords[i];
-        const matchingqueriesjson = queriesjson.find(item => item.keyword === keyword);
-        asnPrefix = '';
-        if (keyword === 'asn') {
-            const setasn = provider.as_includeprefix;
-            if (setasn === 'TRUE') {
-                asnPrefix = 'AS';
-            }
-        }
-        let value = asnPrefix + values[i];
-        if (platform === 'quake360' && keyword === 'country') {
-            if (countries[value]) {
-                value = countries[value];
-            }
-            else {
-                unavailable = true;
-                tooltipText = `the country code "${value}" can not be found.`;
-                break;
-            }
-        }
-        if (matchingqueriesjson[platform] === 'freeform') {
-            queryText += `"${value}" `;
-            continue;
-        }
-        if (matchingqueriesjson[platform] && value) {
-            let queryTermUI = `${matchingqueriesjson[platform]}${kv_separator}"${value}"`;            
-            queryText += `${queryTermUI}`;
-        }
-        if (matchingqueriesjson[platform] == null) {
-            unavailable = true;
-            tooltipText = `The keyword "${keyword}" is not available for ${platform}.`;
-            break;
-        }
-        if (i < keywords.length - 1) {
-            if (provider['query_separator']) {
-                queryText += provider['query_separator'];
-            }
-            else {
-                queryText += ' ';
-            }
-        }
-    }
-    const queryImg = document.createElement('img');
-    queryImg.classList.add('provider-logo');
-    queryImg.src = providerlogouri;
-    queryImg.alt = `${platform} logo`;
-    const imageAnchor = document.createElement('a');
-    imageAnchor.href = providerDocsURI;
-    imageAnchor.target = "_blank";
-    imageAnchor.appendChild(queryImg);
-    queryDiv.appendChild(imageAnchor);
-    if (unavailable) {
-        queryDiv.classList.add("unavailable");
-        const tooltipP = document.createElement('p');
-        tooltipP.innerHTML = `<i>${tooltipText}</i>`;
-        queryDiv.appendChild(tooltipP);
-    } else {
-        queryDiv.classList.remove("unavailable");
-    }
-    if (queryText) {
-        const queryP = document.createElement('p');
-        queryP.textContent = queryText.trim();
-        queryDiv.appendChild(queryP);
-        const copyButton = createCopyButton(queryText.trim());
-        queryDiv.appendChild(copyButton);
-        const openButton = createOpenButton(platform, queryText.trim());
-        queryDiv.appendChild(openButton);
-    }
-    return queryDiv;
+function updateMetaDesc(div, desc) {
+  const tooltipContent = div.querySelector('.tooltip-content');
+  tooltipContent.textContent = desc || '';
 }
 
-function createCopyButton(text) {
-    const copyButton = document.createElement('button');
-    copyButton.classList.add('copy-button');
-    copyButton.innerHTML = '<i class="fas fa-copy"></i>';
-    copyButton.title = 'copy to clipboard';
-    copyButton.addEventListener('click', () => {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        document.body.appendChild(textarea);
-        textarea.focus();
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
+function validateInput(div, query, value) {
+  const warning = div.querySelector('.warning');
+  if (warning) warning.remove();
+  if (query?.constraint && !new RegExp(query.constraint).test(value)) {
+    const warnSpan = document.createElement('span');
+    warnSpan.classList.add('warning', 'text-red-500', 'text-sm', 'mt-1');
+    warnSpan.textContent = `Invalid value for ${query.keyword}. Check format.`;
+    div.appendChild(warnSpan);
+  }
+}
+
+function debounceBuild(queries, providers) {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => buildQueries(queries, providers), 300);
+}
+
+function buildQueries(queries, providers) {
+  const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(el => el.value);
+  const values = Array.from(document.querySelectorAll('.query-value')).map(el => el.value);
+  const operators = Array.from(document.querySelectorAll('.query-operator')).map(el => el.value);
+  const results = document.getElementById('query-results');
+  results.innerHTML = '';
+  providers.forEach(provider => {
+    const queryDiv = createQueryDiv(provider.name, queries, keywords, values, operators, provider);
+    results.appendChild(queryDiv);
+  });
+  updateURLState(keywords, values, operators);
+}
+
+function createQueryDiv(platform, queries, keywords, values, operators, provider) {
+  const card = document.createElement('div');
+  card.classList.add('rounded-xl', 'border', 'bg-card', 'text-card-foreground', 'shadow', 'p-4', 'relative');
+
+  const header = document.createElement('h3');
+  header.classList.add('text-lg', 'font-semibold', 'mb-2');
+  header.textContent = platform;
+  card.appendChild(header);
+
+  let queryText = '';
+  let unavailable = false;
+  let tooltipText = '';
+  for (let i = 0; i < keywords.length; i++) {
+    const kw = keywords[i];
+    const queryItem = queries.find(q => q.keyword === kw);
+    let val = values[i];
+    if (kw === 'asn' && provider.as_includeprefix === 'TRUE') val = 'AS' + val;
+    if (platform === 'quake360' && kw === 'country') {
+      val = COUNTRIES[val] || val;
+      if (!COUNTRIES[val]) {
+        unavailable = true;
+        tooltipText = `The country code "${val}" could not be found.`;
+        break;
+      }
+    }
+    if (queryItem[platform] === 'freeform') {
+      queryText += `"${val}" `;
+      continue;
+    }
+    if (!queryItem[platform]) {
+      unavailable = true;
+      tooltipText = `The keyword "${kw}" is not available for ${platform}.`;
+      break;
+    }
+    let op = '';
+    if (i > 0) {
+      const prevOp = operators[i - 1];
+      op = provider[`operators/${prevOp}`] || prevOp.toUpperCase();
+      queryText += (provider.query_separator || ' ') + op + ' ';
+    }
+    const term = `${queryItem[platform]}${provider.kv_separator}"${val}"`;
+    queryText += term;
+  }
+
+  const logoImg = document.createElement('img');
+  logoImg.src = provider.png_uri;
+  logoImg.alt = `${platform} logo`;
+  logoImg.classList.add('absolute', 'top-2', 'right-2', 'w-10', 'h-10');
+  const logoLink = document.createElement('a');
+  logoLink.href = provider.docs;
+  logoLink.target = '_blank';
+  logoLink.appendChild(logoImg);
+  card.appendChild(logoLink);
+
+  if (unavailable) {
+    card.classList.add('opacity-50');
+    const tooltipP = document.createElement('p');
+    tooltipP.classList.add('text-sm', 'italic', 'text-muted-foreground');
+    tooltipP.textContent = tooltipText;
+    card.appendChild(tooltipP);
+  } else {
+    const queryP = document.createElement('p');
+    queryP.classList.add('font-mono', 'text-xs', 'bg-black', 'text-cyan-400', 'p-2', 'rounded', 'overflow-x-auto', 'mb-2');
+    queryP.textContent = queryText.trim();
+    card.appendChild(queryP);
+
+    const copyBtn = document.createElement('button');
+    copyBtn.classList.add('inline-flex', 'items-center', 'justify-center', 'whitespace-nowrap', 'rounded-md', 'text-sm', 'font-medium', 'ring-offset-background', 'transition-colors', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:pointer-events-none', 'disabled:opacity-50', 'bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80', 'h-10', 'px-4', 'py-2', 'mr-2');
+    copyBtn.innerHTML = '<i class="fas fa-copy mr-2"></i> Copy';
+    copyBtn.addEventListener('click', () => navigator.clipboard.writeText(queryText.trim()));
+
+    const openBtn = document.createElement('button');
+    openBtn.classList.add('inline-flex', 'items-center', 'justify-center', 'whitespace-nowrap', 'rounded-md', 'text-sm', 'font-medium', 'ring-offset-background', 'transition-colors', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:pointer-events-none', 'disabled:opacity-50', 'bg-primary', 'text-primary-foreground', 'hover:bg-primary/90', 'h-10', 'px-4', 'py-2');
+    openBtn.textContent = 'Open in Engine';
+    openBtn.addEventListener('click', () => {
+      let finalQuery = platform === 'fofa' ? btoa(queryText.trim()) : encodeURIComponent(queryText.trim());
+      window.open(`${provider.prefix}${finalQuery}`, '_blank');
     });
-    return copyButton;
+
+    const btnGroup = document.createElement('div');
+    btnGroup.classList.add('flex', 'justify-between');
+    btnGroup.appendChild(copyBtn);
+    btnGroup.appendChild(openBtn);
+    card.appendChild(btnGroup);
+  }
+
+  return card;
 }
 
-function createOpenButton(platform, queryText) {
-    const thisPrefix = providers.find(provider => provider.name === platform).prefix;
-    const openButton = document.createElement('button');
-    openButton.classList.add('open-button');
-    openButton.textContent = 'open in search engine';
-    openButton.addEventListener('click', () => {
-        let finalQuery = (platform === 'fofa') ? btoa(queryText) : encodeURIComponent(queryText);
-        window.open(`${thisPrefix}${finalQuery}`, '_blank');
-    });
-    return openButton;
-}
-
-function buildQueries(queriesjson) {
-    const keywords = Array.from(document.querySelectorAll('.query-keyword')).map(element => element.value);
-    const values = Array.from(document.querySelectorAll('.query-value')).map(element => element.value);
-    const queryRequest = document.getElementById('query-results');
-    queryRequest.innerHTML = '';
-    for (const platform in queriesjson[0]) {
-        if (platform !== 'example' && platform !== 'description' && platform !== 'keyword' && platform !== 'constraint') {
-            const queryDiv = createQueryDiv(platform, queriesjson, keywords, values, providers);
-            queryRequest.appendChild(queryDiv);
-        }
-    }
+function updateURLState(keywords, values, operators) {
+  const params = new URLSearchParams();
+  keywords.forEach((kw, i) => {
+    params.append('keywords[]', kw);
+    params.append('values[]', values[i]);
+    params.append('operators[]', operators[i] || 'and');
+  });
+  history.replaceState(null, '', `?${params.toString()}`);
 }
