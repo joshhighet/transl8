@@ -65,8 +65,6 @@ function populateKeywords(queries, select) {
 function addKeywordInput(queries, operator = 'and') {
   const keywordDiv = document.createElement('div');
   keywordDiv.classList.add('keyword-input', 'flex', 'items-center', 'space-x-2');
-
-  // Operator select (after first input)
   const inputs = document.querySelectorAll('.keyword-input');
   if (inputs.length > 0) {
     const opSelect = document.createElement('select');
@@ -161,12 +159,10 @@ function buildQueries(queries, providers) {
 function createQueryDiv(platform, queries, keywords, values, operators, provider) {
   const card = document.createElement('div');
   card.classList.add('rounded-xl', 'border', 'bg-card', 'text-card-foreground', 'shadow', 'p-4', 'relative');
-
   const header = document.createElement('h3');
   header.classList.add('text-lg', 'font-semibold', 'mb-2');
   header.textContent = platform;
   card.appendChild(header);
-
   let queryText = '';
   let unavailable = false;
   let tooltipText = '';
@@ -223,12 +219,10 @@ function createQueryDiv(platform, queries, keywords, values, operators, provider
     queryP.classList.add('font-mono', 'text-xs', 'bg-black', 'text-cyan-400', 'p-2', 'rounded', 'overflow-x-auto', 'mb-2');
     queryP.textContent = queryText.trim();
     card.appendChild(queryP);
-
     const copyBtn = document.createElement('button');
     copyBtn.classList.add('inline-flex', 'items-center', 'justify-center', 'whitespace-nowrap', 'rounded-md', 'text-sm', 'font-medium', 'ring-offset-background', 'transition-colors', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:pointer-events-none', 'disabled:opacity-50', 'bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80', 'h-10', 'px-4', 'py-2', 'mr-2');
     copyBtn.innerHTML = '<i class="fas fa-copy mr-2"></i> Copy';
     copyBtn.addEventListener('click', () => navigator.clipboard.writeText(queryText.trim()));
-
     const openBtn = document.createElement('button');
     openBtn.classList.add('inline-flex', 'items-center', 'justify-center', 'whitespace-nowrap', 'rounded-md', 'text-sm', 'font-medium', 'ring-offset-background', 'transition-colors', 'focus-visible:outline-none', 'focus-visible:ring-2', 'focus-visible:ring-ring', 'focus-visible:ring-offset-2', 'disabled:pointer-events-none', 'disabled:opacity-50', 'bg-primary', 'text-primary-foreground', 'hover:bg-primary/90', 'h-10', 'px-4', 'py-2');
     openBtn.textContent = 'Open in Engine';
@@ -236,14 +230,12 @@ function createQueryDiv(platform, queries, keywords, values, operators, provider
       let finalQuery = platform === 'fofa' ? btoa(queryText.trim()) : encodeURIComponent(queryText.trim());
       window.open(`${provider.prefix}${finalQuery}`, '_blank');
     });
-
     const btnGroup = document.createElement('div');
     btnGroup.classList.add('flex', 'justify-between');
     btnGroup.appendChild(copyBtn);
     btnGroup.appendChild(openBtn);
     card.appendChild(btnGroup);
   }
-
   return card;
 }
 
