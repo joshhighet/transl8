@@ -24,21 +24,9 @@
         "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/censys.png"
     },
     {
-        "name": "binaryedge",
-        "prefix": "https://app.binaryedge.io/services/query?page=1&query=",
-        "docs": "https://docs.binaryedge.io/search/",
-        "kv_separator": ":",
-        "query_separator": null,
-        "operators/and": "and",
-        "operators/or": "or",
-        "operators/not": "not",
-        "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/binaryedge.png"
-    },
-    {
         "name": "zoomeye",
-        "prefix": "https://www.zoomeye.org/searchResult?q=",
-        "docs": "https://www.zoomeye.org/doc?Thechannel=user",
+        "prefix": "https://www.zoomeye.ai/searchResult?q=",
+        "docs": "https://www.zoomeye.ai",
         "kv_separator": ":",
         "query_separator": " + ",
         "operators/and": "and",
@@ -154,17 +142,5 @@
         "operators/not": "||",
         "as_includeprefix": "FALSE",
         "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/hunter.png"
-    },
-    {
-        "name": "fullhunt",
-        "prefix": "https://fullhunt.io/search?query=",
-        "docs": "https://fullhunt.io/docs/search/filters/",
-        "kv_separator": ":",
-        "query_separator": null,
-        "operators/and": null,
-        "operators/or": null,
-        "operators/not": null,
-        "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/fullhunt.jpg"
     }
 ]
