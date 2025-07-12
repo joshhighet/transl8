@@ -27,6 +27,7 @@ jobs:
     - name: Copy to docs
       run: |
         rm -rf docs/*
+        mkdir -p docs
         cp -r out/* docs/
         rm -rf out
     - name: Commit and push
