@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -14,6 +14,7 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Copy, Trash } from 'lucide-react';
+import Image from 'next/image';
 
 interface QueryItem {
   keyword: string;
@@ -54,6 +55,18 @@ const QueryBuilder = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  const setDefaultFormQueries = useCallback(() => {
+    const defaultQueries: FormQuery[] = [
+      { keyword: 'ip', value: '1.1.1.1' },
+      { keyword: 'port', value: '53', operator: 'and' },
+      { keyword: 'country', value: 'US', operator: 'not' }
+    ];
+    setFormQueries(defaultQueries);
+    const params = new URLSearchParams();
+    params.set('queries', JSON.stringify(defaultQueries));
+    router.replace(`?${params.toString()}`, { scroll: false });
+  }, [router]);
+
   useEffect(() => {
     const loadData = async () => {
       const [queriesRes, providersRes, countriesRes] = await Promise.all([
@@ -71,26 +84,14 @@ const QueryBuilder = () => {
     if (urlQueries) {
       try {
         setFormQueries(JSON.parse(urlQueries));
-      } catch (e) {
-        console.error('invalid URL query:', e);
+      } catch (error) {
+        console.error('invalid URL query:', error);
         setDefaultFormQueries();
       }
     } else {
       setDefaultFormQueries();
     }
-  }, [searchParams]);
-
-  const setDefaultFormQueries = () => {
-    const defaultQueries: FormQuery[] = [
-      { keyword: 'ip', value: '1.1.1.1' },
-      { keyword: 'port', value: '53', operator: 'and' },
-      { keyword: 'country', value: 'US', operator: 'not' }
-    ];
-    setFormQueries(defaultQueries);
-    const params = new URLSearchParams();
-    params.set('queries', JSON.stringify(defaultQueries));
-    router.replace(`?${params.toString()}`, { scroll: false });
-  };
+  }, [searchParams, setDefaultFormQueries]);
 
   const addQueryInput = () => {
     setFormQueries([...formQueries, { keyword: 'ip', value: '', operator: 'and' }]);
@@ -110,7 +111,11 @@ const QueryBuilder = () => {
 
   const updateFormQuery = (index: number, field: 'keyword' | 'value' | 'operator', val: string) => {
     const newFormQueries = [...formQueries];
-    newFormQueries[index][field] = val as any;
+    if (field === 'operator') {
+      newFormQueries[index].operator = val as 'and' | 'or' | 'not';
+    } else {
+      newFormQueries[index][field] = val;
+    }
     setFormQueries(newFormQueries);
     updateUrlParams();
   };
@@ -290,7 +295,7 @@ const QueryBuilder = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2 min-w-[150px]">
                 <a href={provider.docs} target="_blank" rel="noopener noreferrer">
-                  <img src={provider.png_uri} alt={`${provider.name} logo`} className="w-6 h-6" />
+                  <Image src={provider.png_uri} alt={`${provider.name} logo`} width={24} height={24} className="w-6 h-6" />
                 </a>
                 <CardTitle className="text-sm font-medium">{provider.name}</CardTitle>
               </div>
