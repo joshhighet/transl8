@@ -30,6 +30,7 @@ jobs:
         mkdir -p docs
         echo "transl8.watchdawg.io" > docs/CNAME
         cp -r out/* docs/
+        touch docs/.nojekyll
         rm -rf out
     - name: Commit and push
       run: |  
