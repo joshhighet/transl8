@@ -1,0 +1,38 @@
+name: deploy websvc
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: npm ci
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Install Python deps
+      run: pip install pandas
+    - name: Build
+      run: npm run build
+    - name: Copy to docs
+      run: |
+        rm -rf docs/*
+        cp -r out/* docs/
+        rm -rf out
+    - name: Commit and push
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add docs
+        git commit -m "docs autobuild" || echo "no changes"
+        git push
