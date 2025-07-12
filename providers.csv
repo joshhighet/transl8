@@ -1,6 +1,6 @@
 name,prefix,docs,kv_separator,query_separator,operators/and,operators/or,operators/not,as_includeprefix,png_uri
 shodan,https://www.shodan.io/search?query=,https://beta.shodan.io/search/filters,:, ,and,or,not,TRUE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/shodan.png
-censys,https://search.censys.io/search?resource=hosts&sort=RELEVANCE&virtual_hosts=INCLUDE&q=,https://search.censys.io/search/definitions?resource=hosts,:, and ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/censys.png
+censys,https://platform.censys.io/search?q=,https://platform.censys.io/home/definitions,:, and ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/censys.png
 zoomeye,https://www.zoomeye.ai/searchResult?q=,https://www.zoomeye.ai,:, + ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/zoomeye.jpg
 fofa,https://en.fofa.info/result?qbase64=,https://en.fofa.info/api,=, && ,and,or,not,FALSE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/fofa.png
 onyphe,https://www.onyphe.io/search?q=,https://www.onyphe.io/docs/onyphe-query-language,:, ,AND,OR,NOT,TRUE,https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/onyphe.jpg
