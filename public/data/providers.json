@@ -9,7 +9,7 @@
         "operators/or": "or",
         "operators/not": "not",
         "as_includeprefix": "TRUE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/shodan.png"
+        "png_uri": "docs/assets/shodan.png"
     },
     {
         "name": "censys",
@@ -21,7 +21,7 @@
         "operators/or": "or",
         "operators/not": "not",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/censys.png"
+        "png_uri": "docs/assets/censys.png"
     },
     {
         "name": "zoomeye",
@@ -33,7 +33,7 @@
         "operators/or": "or",
         "operators/not": "not",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/zoomeye.jpg"
+        "png_uri": "docs/assets/zoomeye.jpg"
     },
     {
         "name": "fofa",
@@ -45,7 +45,7 @@
         "operators/or": "or",
         "operators/not": "not",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/fofa.png"
+        "png_uri": "docs/assets/fofa.png"
     },
     {
         "name": "onyphe",
@@ -57,7 +57,7 @@
         "operators/or": "OR",
         "operators/not": "NOT",
         "as_includeprefix": "TRUE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/onyphe.jpg"
+        "png_uri": "docs/assets/onyphe.jpg"
     },
     {
         "name": "quake360",
@@ -69,7 +69,7 @@
         "operators/or": "or",
         "operators/not": "not",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/unknown.png"
+        "png_uri": "docs/assets/unknown.png"
     },
     {
         "name": "netlas",
@@ -81,7 +81,7 @@
         "operators/or": "OR",
         "operators/not": "NOT",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/netlas.png"
+        "png_uri": "docs/assets/netlas.png"
     },
     {
         "name": "criminalip",
@@ -93,7 +93,7 @@
         "operators/or": null,
         "operators/not": " -",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/criminalip.png"
+        "png_uri": "docs/assets/criminalip.png"
     },
     {
         "name": "criminalip-images",
@@ -105,7 +105,7 @@
         "operators/or": null,
         "operators/not": " -",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/criminalip.png"
+        "png_uri": "docs/assets/criminalip.png"
     },
     {
         "name": "shodan-images",
@@ -117,7 +117,7 @@
         "operators/or": "or",
         "operators/not": "not",
         "as_includeprefix": "TRUE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/shodan.png"
+        "png_uri": "docs/assets/shodan.png"
     },
     {
         "name": "urlscan",
@@ -129,7 +129,7 @@
         "operators/or": "OR",
         "operators/not": "NOT",
         "as_includeprefix": "TRUE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/urlscan.png"
+        "png_uri": "docs/assets/urlscan.png"
     },
     {
         "name": "hunter",
@@ -141,6 +141,6 @@
         "operators/or": "or",
         "operators/not": "||",
         "as_includeprefix": "FALSE",
-        "png_uri": "https://raw.githubusercontent.com/joshhighet/transl8/main/docs/assets/hunter.png"
+        "png_uri": "docs/assets/hunter.png"
     }
 ]
