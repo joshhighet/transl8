@@ -111,10 +111,10 @@ const QueryBuilder = () => {
 
   const updateFormQuery = (index: number, field: 'keyword' | 'value' | 'operator', val: string) => {
     const newFormQueries = [...formQueries];
-    if (field === 'operator') {
-      newFormQueries[index].operator = val as 'and' | 'or' | 'not';
-    } else {
+    if (field === 'keyword' || field === 'value') {
       newFormQueries[index][field] = val;
+    } else {
+      newFormQueries[index].operator = val as 'and' | 'or' | 'not';
     }
     setFormQueries(newFormQueries);
     updateUrlParams();
