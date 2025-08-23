@@ -32,7 +32,7 @@
         "urlscan": null,
         "hunter": null,
         "description": "Favicon MurmurHash",
-        "constraint": "^[0-9a-fA-F]{8}$",
+        "constraint": "^-?[0-9]+$",
         "example": "1456990795"
     },
     {
