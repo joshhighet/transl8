@@ -139,7 +139,7 @@
         "query_separator": " and ",
         "operators/and": "&&",
         "operators/or": "or",
-        "operators/not": "||",
+        "operators/not": "!=",
         "as_includeprefix": "FALSE",
         "png_uri": "/assets/hunter.png"
     }
