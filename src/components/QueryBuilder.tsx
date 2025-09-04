@@ -94,19 +94,22 @@ const QueryBuilder = () => {
   }, [searchParams, setDefaultFormQueries]);
 
   const addQueryInput = () => {
-    setFormQueries([...formQueries, { keyword: 'ip', value: '', operator: 'and' }]);
-    updateUrlParams();
+    const newQueries: FormQuery[] = [...formQueries, { keyword: 'ip', value: '', operator: 'and' as 'and' }];
+    setFormQueries(newQueries);
+    updateUrlParams(newQueries);
   };
 
   const removeQueryInput = (index: number) => {
     const newFormQueries = formQueries.filter((_, i) => i !== index);
-    setFormQueries(newFormQueries.length ? newFormQueries : [{ keyword: 'ip', value: '' }]);
-    updateUrlParams();
+    const updatedQueries = newFormQueries.length ? newFormQueries : [{ keyword: 'ip', value: '' }];
+    setFormQueries(updatedQueries);
+    updateUrlParams(updatedQueries);
   };
 
   const resetForm = () => {
-    setFormQueries([{ keyword: 'ip', value: '' }]);
-    updateUrlParams();
+    const newQueries = [{ keyword: 'ip', value: '' }];
+    setFormQueries(newQueries);
+    updateUrlParams(newQueries);
   };
 
   const updateFormQuery = (index: number, field: 'keyword' | 'value' | 'operator', val: string) => {
@@ -117,12 +120,12 @@ const QueryBuilder = () => {
       newFormQueries[index].operator = val as 'and' | 'or' | 'not';
     }
     setFormQueries(newFormQueries);
-    updateUrlParams();
+    updateUrlParams(newFormQueries);
   };
 
-  const updateUrlParams = () => {
+  const updateUrlParams = (queries: FormQuery[] = formQueries) => {
     const params = new URLSearchParams();
-    const filteredQueries = formQueries.filter(q => q.value.trim());
+    const filteredQueries = queries.filter(q => q.value.trim());
     if (filteredQueries.length > 0) {
       params.set('queries', JSON.stringify(filteredQueries));
     }
