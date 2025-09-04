@@ -94,7 +94,7 @@ const QueryBuilder = () => {
   }, [searchParams, setDefaultFormQueries]);
 
   const addQueryInput = () => {
-    const newQueries: FormQuery[] = [...formQueries, { keyword: 'ip', value: '', operator: 'and' as 'and' }];
+    const newQueries: FormQuery[] = [...formQueries, { keyword: 'ip', value: '', operator: 'and' as const }];
     setFormQueries(newQueries);
     updateUrlParams(newQueries);
   };
