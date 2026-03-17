@@ -14,7 +14,7 @@
         "urlscan": null,
         "hunter": "tls-jarm.hash",
         "description": "62 byte Fingerprint",
-        "constraint": "^[A-Z0-9]{62}$",
+        "constraint": "^[a-fA-F0-9]{62}$",
         "example": "07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1"
     },
     {
@@ -158,7 +158,7 @@
         "urlscan": null,
         "hunter": null,
         "description": "HTTP Response Body MurmurHash",
-        "constraint": "^[0-9a-fA-F]{8}$",
+        "constraint": "^-?[0-9]+$",
         "example": "-608186607"
     },
     {
@@ -231,7 +231,7 @@
         "hunter": "header.status_code",
         "description": "HTTP Response Code",
         "constraint": "^(1\\d{2}|2\\d{2}|3\\d{2}|4\\d{2}|5\\d{2})$",
-        "example": null
+        "example": "200"
     },
     {
         "keyword": "asn",
@@ -337,7 +337,7 @@
         "criminalip": null,
         "urlscan": null,
         "hunter": null,
-        "description": "FIX REQD - JA3 Server Signature",
+        "description": "JA3 Server Signature",
         "constraint": "^[0-9a-fA-F]{32}$",
         "example": "b4a7811379107e98efecd0824301816d"
     },
@@ -499,7 +499,7 @@
         "criminalip": "cve_id",
         "urlscan": null,
         "hunter": null,
-        "description": null,
+        "description": "CVE Identifier",
         "constraint": "^CVE-\\d{4}-\\d+$",
         "example": "CVE-2021-44228"
     }
