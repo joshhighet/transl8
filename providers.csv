@@ -1,13 +1,13 @@
-name,prefix,docs,kv_separator,query_separator,operators/and,operators/or,operators/not,as_includeprefix,png_uri
-shodan,https://www.shodan.io/search?query=,https://beta.shodan.io/search/filters,:, ,and,or,not,TRUE,/assets/shodan.png
-censys,https://platform.censys.io/search?q=,https://platform.censys.io/home/definitions,:, and ,and,or,not,FALSE,/assets/censys.png
-zoomeye,https://www.zoomeye.ai/searchResult?q=,https://www.zoomeye.ai,:, + ,and,or,not,FALSE,/assets/zoomeye.jpg
-fofa,https://en.fofa.info/result?qbase64=,https://en.fofa.info/api,=, && ,and,or,not,FALSE,/assets/fofa.png
-onyphe,https://www.onyphe.io/search?q=,https://www.onyphe.io/docs/onyphe-query-language,:, ,AND,OR,NOT,TRUE,/assets/onyphe.jpg
-quake360,https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=,https://quake.360.net/quake/#/help?id=5eb238f110d2e850d5c6aec8&title=检索关键词,:, ,and,or,not,FALSE,/assets/unknown.png
-netlas,https://app.netlas.io/responses/?page=1&indices=&q=,https://app.netlas.io/responses/,:, AND ,AND,OR,NOT,FALSE,/assets/netlas.png
-criminalip,https://www.criminalip.io/en/asset/search?query=,https://www.criminalip.io/en/developer/filters-and-tags/filters,: , ,,, -,FALSE,/assets/criminalip.png
-criminalip-images,https://www.criminalip.io/en/image/search?query=,https://www.criminalip.io/en/developer/filters-and-tags/filters,: , ,,, -,FALSE,/assets/criminalip.png
-shodan-images,https://images.shodan.io/?query=,https://beta.shodan.io/search/filters,:, ,and,or,not,TRUE,/assets/shodan.png
-urlscan,https://urlscan.io/search/#,https://urlscan.io/docs/search/,:, ,AND,OR,NOT,TRUE,/assets/urlscan.png
-hunter,https://hunter.how/list?searchValue=,https://hunter.how/guide,==, and ,&&,or,||,FALSE,/assets/hunter.png
+name,prefix,docs,kv_separator,query_separator,operators/and,operators/or,operators/not,not_style,or_style,quote_values,as_includeprefix,png_uri
+shodan,https://www.shodan.io/search?query=,https://beta.shodan.io/search/filters,:, ,,,-,tight,infix,TRUE,TRUE,/assets/shodan.png
+censys,https://platform.censys.io/search?q=,https://platform.censys.io/home/definitions,:, and ,and,or,not,prefix,infix,TRUE,FALSE,/assets/censys.png
+zoomeye,https://www.zoomeye.ai/searchResult?q=,https://www.zoomeye.ai,=, && ,&&,||,!=,kv,infix,TRUE,FALSE,/assets/zoomeye.jpg
+fofa,https://en.fofa.info/result?qbase64=,https://en.fofa.info/api,=, && ,&&,||,!=,kv,infix,TRUE,FALSE,/assets/fofa.png
+onyphe,https://search.onyphe.io/search?q=,https://search.onyphe.io/docs,:, ,,?,!,tight,term-prefix,TRUE,TRUE,/assets/onyphe.jpg
+quake360,https://quake.360.net/quake/#/searchResult?selectIndex=quake_service&latest=true&searchVal=,https://quake.360.net/quake/#/help?id=5eb238f110d2e850d5c6aec8&title=检索关键词,:, ,and,or,not,prefix,infix,TRUE,FALSE,/assets/unknown.png
+netlas,https://app.netlas.io/responses/?page=1&indices=&q=,https://app.netlas.io/responses/,:, AND ,AND,OR,NOT,prefix,infix,TRUE,FALSE,/assets/netlas.png
+criminalip,https://www.criminalip.io/en/asset/search?query=,https://www.criminalip.io/en/developer/filters-and-tags/filters,: , ,,OR,NOT,prefix,infix,FALSE,FALSE,/assets/criminalip.png
+criminalip-images,https://www.criminalip.io/en/image/search?query=,https://www.criminalip.io/en/developer/filters-and-tags/filters,: , ,,OR,NOT,prefix,infix,FALSE,FALSE,/assets/criminalip.png
+shodan-images,https://images.shodan.io/?query=,https://beta.shodan.io/search/filters,:, ,,,-,tight,infix,TRUE,TRUE,/assets/shodan.png
+urlscan,https://urlscan.io/search/#,https://urlscan.io/docs/search/,:, ,AND,OR,NOT,prefix,infix,TRUE,TRUE,/assets/urlscan.png
+hunter,https://hunter.how/list?searchValue=,https://hunter.how/guide,==, && ,&&,||,!==,kv,infix,TRUE,FALSE,/assets/hunter.png

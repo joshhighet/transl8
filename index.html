@@ -9,13 +9,17 @@
   <meta name="description" content="Query syntax translator for network reconnaissance platforms">
   <meta property="og:title" content="transl8" />
   <meta property="og:description" content="Query syntax translator for network reconnaissance platforms" />
-  <meta property="og:image" content="assets/opengraph.png" />
+  <meta property="og:image" content="https://transl8.watchdawg.io/assets/opengraph.png" />
+  <meta property="og:url" content="https://transl8.watchdawg.io/" />
   <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="https://github.com/joshhighet.png">
 
-  <!-- Match securitytools: Roboto + Font Awesome -->
+  <!-- Roboto only. Font Awesome used to be loaded here and was never referenced:
+       every icon on the page is inline SVG. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" crossorigin="anonymous" />
 
   <style>
     /* ── securitytools design tokens ───────────────────────────── */
@@ -85,7 +89,8 @@
 
     /* ── Content wrapper ──────────────────────────────────────── */
     .content-wrapper {
-      max-width: 90vw;
+      width: 100%;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 1.5rem 1rem 3rem;
     }
@@ -131,7 +136,11 @@
 
     .op-select    { width: 88px; }
     .op-spacer    { width: 88px; flex-shrink: 0; }
-    .kw-select    { width: 164px; }
+    /* The tooltip lives on this wrapper, not on the <select>: a <select> is a
+       replaced element and browsers do not paint ::before/::after on it, so
+       the keyword descriptions never rendered. */
+    .kw-wrap      { width: 164px; flex-shrink: 0; display: flex; }
+    .kw-select    { width: 100%; }
     .value-input  { flex: 1; min-width: 0; }
     .country-select { flex: 1; min-width: 0; }
 
@@ -299,15 +308,40 @@
       z-index: 20;
     }
 
-    .has-tip:hover::after { opacity: 1; }
+    .has-tip:hover::after,
+    .has-tip:focus-visible::after,
+    .has-tip:focus-within::after { opacity: 1; }
 
-    /* ── Empty state ─────────────────────────────────────────── */
+    /* Keyboard focus must be visible on every interactive element. */
+    :focus-visible {
+      outline: 2px solid var(--link);
+      outline-offset: 2px;
+    }
+
+    /* ── Empty / error state ─────────────────────────────────── */
     .empty-state {
       text-align: center;
       color: var(--text-muted);
       font-size: 0.875rem;
       padding: 2rem 0;
     }
+
+    .error-state {
+      border: 1px solid rgba(248,113,113,0.4);
+      background: rgba(248,113,113,0.06);
+      border-radius: var(--radius);
+      color: #f87171;
+      font-size: 0.875rem;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+    }
+    .error-state code {
+      font-family: 'SF Mono', 'Consolas', 'Menlo', 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    button[disabled] { opacity: 0.4; cursor: not-allowed; }
 
     /* ── Footer ──────────────────────────────────────────────── */
     .site-footer {
@@ -335,7 +369,20 @@
       .query-output { font-size: 0.68rem; }
       .op-select { width: 72px; }
       .op-spacer { width: 72px; }
-      .kw-select { width: 120px; }
+      .kw-wrap   { width: 120px; }
+
+      /* The query text is the whole point of the page -- at 390px the
+         nowrap/overflow-x version showed ~30 characters of it and hid the
+         rest behind a scrollbar inside each of a dozen cards. */
+      .provider-card { flex-wrap: wrap; }
+      .query-output {
+        white-space: pre-wrap;
+        overflow-x: visible;
+        overflow-wrap: anywhere;
+        flex-basis: 100%;
+        order: 3;
+      }
+      .card-actions { margin-left: auto; }
     }
   </style>
 </head>
@@ -367,7 +414,11 @@
     </div>
 
     <!-- Results -->
-    <div class="results-wrap" id="results"></div>
+    <noscript>
+      <p class="error-state">transl8 builds queries in your browser, so it needs
+      JavaScript enabled. Nothing is sent anywhere.</p>
+    </noscript>
+    <div class="results-wrap" id="results" aria-live="polite"></div>
   </div>
 
   <!-- Footer -->
@@ -375,6 +426,6 @@
     <a href="https://github.com/joshhighet/transl8" target="_blank" rel="noopener">joshhighet/transl8</a>
   </footer>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
