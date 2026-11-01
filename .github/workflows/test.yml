@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 'latest'
       - name: run tests
-        run: node --test tests/
+        run: node --test tests/*.test.mjs
